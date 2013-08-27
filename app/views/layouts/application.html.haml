@@ -1,0 +1,39 @@
+!!! html5
+%html
+  %head
+    %title snabbspola
+=yield :head
+=stylesheet_link_tag "application", media: "all", "data-turbu-links-track" => true
+=javascript_include_tag "application", media: "all", "data-turbo-links-track" => true
+%link{href: "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css", rel: "stylesheet"}
+%link{href: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", rel: "stylesheet"}
+%link{href: "//netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css", rel: "stylesheet"}
+%script{src: "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"}
+  =csrf_meta_tags
+%body
+
+  #flashes
+    -flash.each do |type, message|
+      .alert.alert-dismissable{class: "alert-#{type}"}
+        %button.close{type:"button", :"data-dismiss" => "alert"} &times;
+        =message
+
+.navbar.navbar-fixed-top
+  .navbar-header
+    %a.navbar-brand{href:"/"}= "Snabbspola"
+  .navbar-collapse.collapse
+    - if current_user
+      %p.navbar-text.pull-right
+        #{current_user.firstname}
+        %a{href:"/logout"}
+          %i.icon-off
+    - else
+      %a.navbar-text.pull-right{href: "/register"} Register
+      %a.navbar-text.pull-right{href: "/login"} Log in
+
+    %ul.nav.navbar-nav
+      %li
+        %a{href: "/courses"} Courses
+
+=yield
+
