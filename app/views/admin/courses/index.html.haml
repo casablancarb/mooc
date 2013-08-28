@@ -1,0 +1,20 @@
+.container
+
+  .page-header
+    = link_to "Create new course", new_admin_course_path,
+      class: 'btn btn-success pull-right'
+    %h1 Courses I'm running
+
+  %table.table.table-hover
+    - @courses.each do |course|
+      %tr
+        %td.lead
+          = link_to course.title, course
+        %td.text-right
+          = link_to "Edit", edit_admin_course_path(course),
+            class: 'btn btn-default'
+          = link_to "Delete", admin_course_path(course),
+            method: :delete,
+            confirm: "Are you really sure you want to delete #{course.title}?",
+            class: 'btn btn-danger'
+
