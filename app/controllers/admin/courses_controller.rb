@@ -25,6 +25,7 @@ class Admin::CoursesController < ApplicationController
 
   def update
     @course = Course.find params[:id]
+    redirect_to login_path unless current_user.can_edit_course?(@course)
     if @course.update app_params
       flash[:notice] = 'Course successfully edited'
       redirect_to admin_courses_path
