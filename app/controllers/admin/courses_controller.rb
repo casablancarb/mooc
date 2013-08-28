@@ -20,9 +20,18 @@ class Admin::CoursesController < ApplicationController
   end
 
   def edit
+    @course = Course.find params[:id]
   end
 
   def update
+    @course = Course.find params[:id]
+    if @course.update app_params
+      flash[:notice] = 'Course successfully edited'
+      redirect_to admin_courses_path
+    else
+      flash[:error] = 'Could not create course'
+      render 'edit'
+    end
   end
 
   def destroy
