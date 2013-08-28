@@ -13,7 +13,7 @@
         %td.text-right
           = link_to "Edit", edit_admin_course_path(course),
             class: 'btn btn-default'
-          = link_to "Delete", admin_course_path(course),
+          = button_to "Delete", admin_course_path(course),
             method: :delete,
             confirm: "Are you really sure you want to delete #{course.title}?",
             class: 'btn btn-danger'

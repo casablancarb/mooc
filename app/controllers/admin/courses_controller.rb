@@ -36,6 +36,15 @@ class Admin::CoursesController < ApplicationController
   end
 
   def destroy
+    course = Course.find params[:id]
+    redirect_to login_path unless current_user.can_edit_course?(course)
+    if course.delete
+      flash[:notice] = 'Successfully deleted course'
+      redirect_to admin_courses_path
+    else
+      flash[:error] = 'Could not delete course'
+      redirect_to admin_courses_path
+    end
   end
 
   private
