@@ -32,8 +32,11 @@
       %a.navbar-text.pull-right{href: "/login"} Log in
 
     %ul.nav.navbar-nav
-      %li
-        %a{href: "/courses"} Courses
+      - if current_user
+        %li
+          %a{href: "/courses"} Courses I'm taking
+        %li
+          %a{href: "#{admin_courses_path}"} Courses I'm teaching
 
 =yield
 
