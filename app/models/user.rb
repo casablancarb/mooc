@@ -4,10 +4,6 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :password, :firstname, :lastname
 
   def can_edit_course? course
-    CourseEditPolicy.user_can_edit_course? course, user
-  end
-
-  def owner_is? other_user
-    user.id == other_user.id
+    CourseEditPolicy.user_can_edit_course? self, course
   end
 end
