@@ -1,8 +1,8 @@
 - if model.errors.any?
   .error_messages
-    %h2 Form is invalid
+    %h3.text-danger Form is invalid
     %ul
       - for message in model.errors.full_messages
-        %li
+        %li.text-danger
           = message
 
