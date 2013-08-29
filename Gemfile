@@ -45,3 +45,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger', group: [:development, :test]
 
 gem 'haml'
+gem 'draper', '~> 1.0'
