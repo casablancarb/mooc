@@ -6,6 +6,7 @@ class Admin::SectionsController < ApplicationController
 
   def new
     @section = Section.new
+    build_breadcrumb
   end
 
   def create
@@ -21,6 +22,7 @@ class Admin::SectionsController < ApplicationController
   end
 
   def show
+    build_breadcrumb
   end
 
   def edit
@@ -43,6 +45,13 @@ class Admin::SectionsController < ApplicationController
   end
 
   private
+
+  def build_breadcrumb
+    @breadcrumbs = [
+      Breadcrumb.new('My teaching', admin_courses_path),
+      Breadcrumb.new(@course.title + ', ' + @course.decorate.when, admin_course_path(@course)),
+      Breadcrumb.new(@section.title || "Add section")]
+  end
 
   def set_course_variable
     @course = Course.find(params[:course_id]).decorate
