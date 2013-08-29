@@ -44,7 +44,7 @@ class Admin::ExercisesController < ApplicationController
     if ExercisePolicy.user_can_edit?(current_user, @exercise)
       if @exercise.update app_params
         flash[:success] = 'Successfully updated exercise'
-        redirect_to admin_course_section_path(@section.course, @section)
+        redirect_to admin_section_exercise_path(@section, @exercise)
       else
         flash[:error] = 'Could not update exercise'
         render 'new'
