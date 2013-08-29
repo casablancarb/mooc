@@ -3,6 +3,14 @@ class Admin::CoursesController < ApplicationController
     @courses = current_user.courses
   end
 
+  def show
+    @course = Course.find params[:id]
+    unless @course.owned_by? current_user
+      flash[:error] = "Unauthorized"
+      redirect_to admin_courses_path
+    end
+  end
+
   def new
     @course = Course.new
   end
@@ -21,6 +29,10 @@ class Admin::CoursesController < ApplicationController
 
   def edit
     @course = Course.find params[:id]
+    unless @course.owned_by? current_user
+      flash[:error] = "Unauthorized"
+      redirect_to admin_courses_path
+    end
   end
 
   def update

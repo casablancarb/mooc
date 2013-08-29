@@ -14,7 +14,9 @@ SnabbspolaSe::Application.routes.draw do
   post 'courses/:id/request_join' => 'admissions#create', as: 'request_join_course'
   resources :courses, only: [:index, :show]
   namespace :admin do
-    resources :courses, except: [:show]
+    resources :courses do
+      resources :moment
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
