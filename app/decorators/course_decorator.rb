@@ -7,6 +7,10 @@ class CourseDecorator < BaseDecorator
     end
   end
 
+  def summary
+    "#{title} - #{self.when}"
+  end
+
   def when
     "#{year} #{semester}"
   end
