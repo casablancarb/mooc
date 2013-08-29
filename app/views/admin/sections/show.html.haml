@@ -15,7 +15,7 @@
     - @section.exercises.each do |exercise|
       %tr
         %td.lead
-          = exercise.title
+          = link_to exercise.title, admin_section_exercise_path(@section, exercise)
         %td.text-right
           = link_to 'Edit exercise', edit_admin_section_exercise_path(@section, exercise),
             class: 'btn btn-default'
