@@ -34,11 +34,17 @@
     %ul.nav.navbar-nav
       - if current_user
         %li
-          %a{href: "/courses"} Course Catalog
+          %a{href: "#{studies_path}"}
+            %i.icon-home
+            My studies
         %li
-          %a{href: "#{studies_path}"} My studies
+          %a{href: "#{teaching_path}"}
+            %i.icon-microphone
+            My teaching
         %li
-          %a{href: "#{teaching_path}"} My teaching
+          %a{href: "/courses"}
+            %i.icon-archive
+            Course Catalog
 
 - if @breadcrumbs
   .container
