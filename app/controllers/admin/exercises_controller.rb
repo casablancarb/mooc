@@ -22,6 +22,15 @@ class Admin::ExercisesController < ApplicationController
     end
   end
 
+  def show
+    @exercise = Exercise.find params[:id]
+    unless ExercisePolicy.user_can_edit?(current_user, @exercise)
+      flash[:error] = 'Unauthorized'
+      redirect_to :root
+    end
+    build_breadcrumb
+  end
+
   def edit
     @exercise = Exercise.find params[:id]
     unless ExercisePolicy.user_can_edit?(current_user, @exercise)
@@ -58,6 +67,15 @@ class Admin::ExercisesController < ApplicationController
   end
 
   private
+
+  def build_breadcrumb
+    course = @section.course.decorate
+    @breadcrumbs = [
+      Breadcrumb.new('My teaching', admin_courses_path),
+      Breadcrumb.new("#{course.title}, #{course.decorate.when}", admin_course_path(course)),
+      Breadcrumb.new(@section.title, admin_course_section_path(course, @section)),
+      Breadcrumb.new(@exercise.title)]
+  end
 
   def set_section_instance_variable
     @section = Section.find(params[:section_id]).decorate
