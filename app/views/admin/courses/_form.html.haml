@@ -6,7 +6,8 @@
       class: 'form-control'
   .form-group
     = f.label :year
-    = f.select :year, options_for_select([2013,2014,2015])
+    = f.select :year, options_for_select([2013,2014,2015]),
+      class: 'form-control'
   .form-group
     = f.label :semester
     = f.select :semester, options_for_select([['VT', 1], ['HT', 2]]),
