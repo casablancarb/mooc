@@ -10,6 +10,9 @@ SnabbspolaSe::Application.routes.draw do
   resources :sessions, :only => [:create]
   resources :users
 
+  get 'admin' => 'admin/courses#index'
+  get 'teaching' => 'admin/courses#index' #TODO: This oughta replace the above
+
   get 'courses/:id/join' => 'admissions#new', as: 'join_course'
   post 'courses/:id/request_join' => 'admissions#create', as: 'request_join_course'
   resources :courses, only: [:index, :show]
