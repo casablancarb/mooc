@@ -4,9 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
+  helper_method :redirect_unless_write_access_to_course
   before_filter :authorize
 
   private
+
+  def redirect_unless_write_access_to_course!(course)
+    unless CourseEditPolicy.user_can_edit_course?(current_user, course)
+      flash[:error] = "Unauthorized"
+      redirect_to admin_courses_path
+    end
+  end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

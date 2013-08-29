@@ -5,10 +5,7 @@ class Admin::CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id]).decorate
-    unless @course.owned_by? current_user
-      flash[:error] = "Unauthorized"
-      redirect_to admin_courses_path
-    end
+    redirect_unless_write_access_to_course! @course
   end
 
   def new
@@ -29,15 +26,12 @@ class Admin::CoursesController < ApplicationController
 
   def edit
     @course = Course.find params[:id]
-    unless @course.owned_by? current_user
-      flash[:error] = "Unauthorized"
-      redirect_to admin_courses_path
-    end
+    redirect_unless_write_access_to_course! @course
   end
 
   def update
     @course = Course.find params[:id]
-    redirect_to login_path unless current_user.can_edit_course?(@course)
+    redirect_unless_write_access_to_course! @course
     if @course.update app_params
       flash[:notice] = 'Course successfully edited'
       redirect_to admin_courses_path
@@ -49,7 +43,7 @@ class Admin::CoursesController < ApplicationController
 
   def destroy
     course = Course.find params[:id]
-    redirect_to login_path unless current_user.can_edit_course?(course)
+    redirect_unless_write_access_to_course! @course
     if course.delete
       flash[:notice] = 'Successfully deleted course'
       redirect_to admin_courses_path
