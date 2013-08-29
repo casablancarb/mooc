@@ -26,7 +26,7 @@ SnabbspolaSe::Application.routes.draw do
     resources :exercises, only:[] do
       resources :questions, only:[:new, :create]
     end
-    resources :exercises, except:[:new, :create]
+    resources :questions, except:[:new, :create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
