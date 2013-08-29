@@ -13,5 +13,10 @@
     = f.select :semester, options_for_select([['VT', 1], ['HT', 2]]),
       class: 'form-control'
   .form-group
+    = f.label :admission_code
+    = f.text_field :admission_code,
+      class: 'form-control'
+    %p This is the code the students need to give when either registering to the system for the first time, or when joining this course. You can always change the admission code later.
+  .form-group
     = f.submit "Save",
       class: 'form-control btn-default'

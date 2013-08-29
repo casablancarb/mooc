@@ -50,6 +50,6 @@ class Admin::CoursesController < ApplicationController
   private
 
   def app_params
-    params.require(:course).permit(:title, :semester, :year)
+    params.require(:course).permit(:title, :semester, :year, :admission_code)
   end
 end
