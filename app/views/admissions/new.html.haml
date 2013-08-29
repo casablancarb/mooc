@@ -1,0 +1,19 @@
+.container
+  .page-header
+    %h1
+      Join course
+      %br
+      %small
+        #{@course.title}, #{@course.when}
+  
+  %p
+    In case you don't have a code to join, contact your teacher to aquire one as soon as possible.
+
+  = form_tag request_join_course_path(@course) do |f|
+    .form-group
+      = label_tag :admission_code, "Your code"
+      = text_field_tag :admission_code
+    .form-group
+      = submit_tag 'Request join',
+        class: 'btn btn-primary'
+
