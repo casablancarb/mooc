@@ -43,7 +43,7 @@ class Admin::QuestionsController < ApplicationController
 
   def app_params
     params.require(:question).permit(:body, alternatives_attributes:
-                                     [:id, :body, :truth_value, :explanation])
+                                     [:id, :body, :truth_value, :explanation, :_destroy])
   end
 
   def ensure_access_rights!
