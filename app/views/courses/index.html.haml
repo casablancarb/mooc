@@ -15,7 +15,7 @@
         %td
           = course.when
         %td.text-center
-          - unless current_user.takes_course(course)
+          - unless current_user.takes_course?(course)
             = link_to "Join course", join_course_path(course),
               class: 'btn btn-success btn-sm'
           - else

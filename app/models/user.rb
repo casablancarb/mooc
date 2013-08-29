@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     admissions.map(&:course).uniq
   end
 
-  def takes_course(course)
+  def takes_course?(course)
     admitted_courses.include?(course)
   end
 
