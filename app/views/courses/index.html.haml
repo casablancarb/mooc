@@ -14,9 +14,10 @@
           = course.title
         %td
           = course.when
-        %td
-          = link_to "Join course", join_course_path(course),
-            class: 'btn btn-success btn-sm'
-
-      
+        %td.text-center
+          - unless current_user.takes_course(course)
+            = link_to "Join course", join_course_path(course),
+              class: 'btn btn-success btn-sm'
+          - else
+            %p Admitted
 

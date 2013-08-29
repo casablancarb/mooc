@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
     admissions.map(&:course).uniq
   end
 
+  def takes_course(course)
+    admitted_courses.include?(course)
+  end
+
   def can_edit_course? course
     CourseEditPolicy.user_can_edit_course? self, course
   end
