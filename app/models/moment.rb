@@ -1,3 +1,3 @@
-class Moment < ActiveRecord::Base
+class Module < ActiveRecord::Base
   belongs_to :course
 end

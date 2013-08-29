@@ -1,0 +1,6 @@
+= form_for [:admin, @module] do |f|
+  = render "shared/form_errors", model: @module
+  .form-group
+    = f.label :title
+    = f.text_field :title,
+      class: 'form-control'
