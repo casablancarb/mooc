@@ -8,7 +8,7 @@
           %small
             = @course.summary
       .col-md-4.text-right
-        = link_to 'Edit course section', new_admin_section_exercise_path(@section),
+        = link_to 'Edit course section', edit_admin_course_section_path(@course, @section),
           class: 'btn btn-default btn-lg'
 
   %table.table.table-striped
