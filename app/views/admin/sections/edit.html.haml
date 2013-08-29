@@ -1,0 +1,12 @@
+.container
+  .page-header
+    %h1
+      Edit section
+      %span.text-muted
+        = @section.title
+      %br
+      %small
+        = @course.summary
+
+  = render 'form'
+

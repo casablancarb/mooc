@@ -15,7 +15,7 @@ SnabbspolaSe::Application.routes.draw do
   resources :courses, only: [:index, :show]
   namespace :admin do
     resources :courses do
-      resources :sections
+      resources :sections, except: [:index]
     end
   end
 

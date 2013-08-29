@@ -1,9 +1,29 @@
 .container
   .page-header
-    = link_to 'Add course moment', new_admin_course_module_path(@course),
+    = link_to 'Add course moment', new_admin_course_section_path(@course),
       class: 'btn btn-success pull-right'
     %h1
       = @course.title
       %br
       %small
         = @course.when
+
+  %table.table.table-hover
+    %tr
+      %th Course section
+      %th Description
+      %th
+    - @course.sections.each do |section|
+      %tr
+        %td.lead
+          = link_to section.title, admin_course_sections_path(section)
+        %td
+          = section.description
+        %td.text-right
+          = link_to 'Edit', edit_admin_course_section_path(@course, section),
+            class: 'btn btn-default'
+          = button_to 'Delete', admin_course_section_path(@course, section),
+            confirm: "Are you sure you want to remove the section #{section.title}",
+            method: :delete,
+            class: 'btn btn-danger'
+
