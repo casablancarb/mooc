@@ -19,8 +19,16 @@
     .list-group
       = link_to admin_question_path(question),
         class:'list-group-item' do
-        .list-group-item-heading
+        %h4.list-group-item-heading
           = question.body
+        .list-group-item-text
+          Question contain
+          %span{ class:"text-#{question.alternatives_status_class}" }
+            #{question.number_of_alternatives } alternatives,
+          out of which
+          %span{ class:"text-#{question.correct_alternatives_status_class}" }
+            #{question.number_of_correct_alternatives} are correct.
 
   = link_to 'Add question', new_admin_exercise_question_path(@exercise),
-    class: 'btn btn-primary'
+    class: 'btn btn-primary',
+    "data-no-turbolink" => ""

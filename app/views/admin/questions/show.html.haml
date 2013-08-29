@@ -8,7 +8,8 @@
             = @question.exercise.title
       .col-md-4.text-right
         = link_to 'Edit question & alternatives', edit_admin_question_path(@question),
-          class: 'btn btn-default btn-lg'
+          class: 'btn btn-default btn-lg',
+          :'data-no-turbolink' => ''
 
   %p.lead
     = @question.body

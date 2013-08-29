@@ -23,7 +23,7 @@ class Admin::ExercisesController < ApplicationController
   end
 
   def show
-    @exercise = Exercise.find params[:id]
+    @exercise = Exercise.find(params[:id]).decorate
     unless ExercisePolicy.user_can_edit?(current_user, @exercise)
       flash[:error] = 'Unauthorized'
       redirect_to :root
