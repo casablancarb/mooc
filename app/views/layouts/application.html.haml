@@ -40,5 +40,17 @@
         %li
           %a{href: "#{admin_courses_path}"} My teaching
 
+- if @breadcrumbs
+  .container
+    %ol.breadcrumb
+      - @breadcrumbs.each do |breadcrumb|
+        - unless breadcrumb.url.blank?
+          %li
+            %a{ href:"#{breadcrumb.url}" }
+              = breadcrumb.title
+        - else
+          %li.active
+            = breadcrumb.title
+
 =yield
 

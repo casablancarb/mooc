@@ -6,6 +6,7 @@ class Admin::CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id]).decorate
     redirect_unless_write_access_to_course! @course
+    build_breadcrumb
   end
 
   def new
@@ -27,6 +28,7 @@ class Admin::CoursesController < ApplicationController
   def edit
     @course = Course.find params[:id]
     redirect_unless_write_access_to_course! @course
+    build_breadcrumb
   end
 
   def update
@@ -54,6 +56,12 @@ class Admin::CoursesController < ApplicationController
   end
 
   private
+
+  def build_breadcrumb
+    @breadcrumbs = [
+      Breadcrumb.new('My teaching', admin_courses_path),
+      Breadcrumb.new(@course.title + ', ' + @course.decorate.when)]
+  end
 
   def app_params
     params.require(:course).permit(:title, :semester, :year, :admission_code)
