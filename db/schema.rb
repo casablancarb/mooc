@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829075900) do
+ActiveRecord::Schema.define(version: 20130829083240) do
 
   create_table "admissions", force: true do |t|
     t.integer "user_id"
@@ -20,9 +20,10 @@ ActiveRecord::Schema.define(version: 20130829075900) do
 
   create_table "courses", force: true do |t|
     t.string  "title"
-    t.integer "semester", limit: 1
+    t.integer "semester",       limit: 1
     t.integer "user_id"
     t.integer "year"
+    t.string  "admission_code"
   end
 
   create_table "users", force: true do |t|
