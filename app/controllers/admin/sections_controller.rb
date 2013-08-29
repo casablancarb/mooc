@@ -32,7 +32,7 @@ class Admin::SectionsController < ApplicationController
     @section.course = @course
     if @section.update app_params
       flash[:success] = 'Course section updated'
-      redirect_to admin_course_path(@course)
+      redirect_to admin_course_section_path(@course, @section)
     else
       flash[:error] = 'Could not update section'
       render 'edit'
@@ -49,8 +49,8 @@ class Admin::SectionsController < ApplicationController
   def build_breadcrumb
     @breadcrumbs = [
       Breadcrumb.new('My teaching', admin_courses_path),
-      Breadcrumb.new(@course.title + ', ' + @course.decorate.when, admin_course_path(@course)),
-      Breadcrumb.new(@section.title || "Add section")]
+      Breadcrumb.new("#{@course.title}, #{@course.decorate.when}", admin_course_path(@course)),
+      Breadcrumb.new("#{@section.title || 'Add section'}")]
   end
 
   def set_course_variable
