@@ -1,21 +1,43 @@
-%h1 Register
-= form_for @user do |f|
-  = render "shared/form_errors", model: @user
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .field
-    = f.label :firstname
-    = f.text_field :firstname
-  .field
-    = f.label :lastname
-    = f.text_field :lastname
-  .actions
-    = f.submit "Registrera"
+.container
+  .page-header
+    %h1 Register
+
+  = form_for @user, class:'form-horizontal' do |f|
+    = render "shared/form_errors", model: @user
+    .form-group
+      = label_tag :admission_code
+      = text_field_tag :admission_code, @admission_code,
+        placeholder: 'Your admission code as given by the teacher',
+        class: 'form-control'
+    .form-group
+      = f.label :email
+      = f.text_field :email,
+        class: 'form-control',
+        placeholder: 'Your email'
+    .form-group
+      = f.label :password
+      = f.password_field :password,
+        class: 'form-control',
+        placeholder: 'Enter a password'
+    .form-group
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation,
+        class: 'form-control',
+        placeholder: 'Password again'
+    .form-group
+      = f.label :firstname
+      = f.text_field :firstname,
+        class: 'form-control',
+        placeholder: 'Your firstname'
+    .form-group
+      = f.label :lastname
+      = f.text_field :lastname,
+        class: 'form-control',
+        placeholder: 'Your lastname'
+    .form-group
+      = f.submit "Registrera",
+        class: 'btn btn-primary'
+
+    %p.lead
+      If you don't have an admission code, contact your teacher as soon as possible to aquire one :)
 
