@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   belongs_to :user
+  has_many :admissions
   validates_length_of :semester, in: 1..2
   validates_presence_of :user, :title, :semester
 
