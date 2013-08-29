@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829064618) do
+ActiveRecord::Schema.define(version: 20130829075900) do
 
   create_table "admissions", force: true do |t|
     t.integer "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20130829064618) do
     t.string  "title"
     t.integer "semester", limit: 1
     t.integer "user_id"
+    t.integer "year"
   end
 
   create_table "users", force: true do |t|
