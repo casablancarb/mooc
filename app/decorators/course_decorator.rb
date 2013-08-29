@@ -6,4 +6,8 @@ class CourseDecorator < BaseDecorator
       "Fall"
     end
   end
+
+  def when
+    "#{year} #{semester}"
+  end
 end

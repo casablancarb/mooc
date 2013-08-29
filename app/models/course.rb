@@ -7,4 +7,8 @@ class Course < ActiveRecord::Base
   def owned_by? other_user
     user.id == other_user.id
   end
+
+  default_scope do
+    order('year ASC').order('semester ASC')
+  end
 end
