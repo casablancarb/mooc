@@ -4,5 +4,10 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @course = Course.find params[:id]
+    unless current_user.takes_course? @course
+      flash[:error] = 'You are not admitted to this course, please join it first'
+      redirect_to courses_path
+    end
   end
 end
