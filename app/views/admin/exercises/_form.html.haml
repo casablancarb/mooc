@@ -1,0 +1,21 @@
+- #TODO The form_for below is utterly strange
+= form_for [@section, @exercise], url: admin_section_exercise_path(@section, @exercise) do |f|
+  = render 'shared/form_errors', model: @exercise
+  .form-group
+    = f.label :title
+    = f.text_field :title,
+      class: 'form-control',
+      placeholder: 'The title of the exercise '
+  .form-group
+    = f.label :description
+    = f.text_area :description,
+      class: 'form-control',
+      placeholder: 'Brief information about the exercise'
+  .form-group
+    = f.label :video_id, 'YouTube video ID'
+    = f.text_field :video_id,
+      class: 'form-control',
+      placeholder: 'youtube.com/watch?v=USE_ONLY_THIS_PART'
+  .form-group
+    = f.submit 'Save',
+      class: 'btn btn-primary'

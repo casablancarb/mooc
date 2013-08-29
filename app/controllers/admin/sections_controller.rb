@@ -1,8 +1,8 @@
 class Admin::SectionsController < ApplicationController
   before_filter :set_course_variable
   before_filter :make_sure_course_is_writable
-  before_filter :set_section_variable, only: [:edit, :update, :destroy]
-  before_filter :make_sure_section_is_writable, only: [:edit, :update, :destroy]
+  before_filter :set_section_variable, only: [:edit, :update, :destroy, :show]
+  before_filter :make_sure_section_is_writable, only: [:edit, :update, :destroy, :show]
 
   def new
     @section = Section.new
@@ -18,6 +18,9 @@ class Admin::SectionsController < ApplicationController
       flash[:error] = 'Could not create course section'
       render 'new'
     end
+  end
+
+  def show
   end
 
   def edit
