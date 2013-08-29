@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_many :admissions
   validates_presence_of :email, :password, :firstname, :lastname
 
+  def admitted_courses
+    admissions.map(&:course).uniq
+  end
+
   def can_edit_course? course
     CourseEditPolicy.user_can_edit_course? self, course
   end

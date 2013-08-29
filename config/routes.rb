@@ -5,6 +5,8 @@ SnabbspolaSe::Application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'register' => 'users#new'
 
+  get 'studies' => 'pages#studies'
+
   resources :sessions, :only => [:create]
   resources :users
 
