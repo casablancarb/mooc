@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829171237) do
+ActiveRecord::Schema.define(version: 20130829184103) do
 
   create_table "admissions", force: true do |t|
     t.integer "user_id"
     t.integer "course_id"
+  end
+
+  create_table "alternatives", force: true do |t|
+    t.string  "body"
+    t.string  "explanation"
+    t.boolean "truth_value"
+    t.integer "question_id"
   end
 
   create_table "courses", force: true do |t|
