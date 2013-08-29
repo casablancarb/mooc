@@ -20,6 +20,7 @@ class Admin::QuestionsController < ApplicationController
 
   def show
     ensure_access_rights!
+    @question = @question.decorate
   end
 
   def edit
@@ -41,7 +42,8 @@ class Admin::QuestionsController < ApplicationController
   private
 
   def app_params
-    params.require(:question).permit(:body)
+    params.require(:question).permit(:body, alternatives_attributes:
+                                     [:id, :body, :truth_value, :explanation])
   end
 
   def ensure_access_rights!

@@ -4,6 +4,18 @@
     = f.label :body
     = f.text_area :body,
       class: 'form-control'
+
+  %h3 Alternatives
+  #alternatives
+    = f.fields_for :alternatives do |alternative|
+      = render 'alternative_fields', :f => alternative
+    .links
+      = link_to_add_association 'Add alternative', f, :alternatives,
+        class: 'btn btn-success btn-sm'
+
+  %hr
+
   .form-group
     = f.submit 'Save',
       class: 'btn btn-primary'
+

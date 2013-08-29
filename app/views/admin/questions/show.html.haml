@@ -1,14 +1,29 @@
 .container
   .page-header
     .row
-      .col-md-9
+      .col-md-8
         %h1
           Question for
           %span.text-muted
             = @question.exercise.title
-      .col-md-3.text-right
-        = link_to 'Edit question body', edit_admin_question_path(@question),
+      .col-md-4.text-right
+        = link_to 'Edit question & alternatives', edit_admin_question_path(@question),
           class: 'btn btn-default btn-lg'
 
   %p.lead
     = @question.body
+
+  %table.table.table-striped
+    %tr
+      %th
+        Alternative
+      %th.text-center
+        Correct?
+      %th
+        Explanation
+    - @question.alternatives.each do |alternative|
+      %tr{ class:"#{alternative.truth_value_color_class}" }
+        %td= alternative.body
+        %td.text-center
+          %i{ class:"#{alternative.truth_value_class}" }
+        %td= alternative.explanation

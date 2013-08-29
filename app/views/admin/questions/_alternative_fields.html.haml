@@ -1,0 +1,17 @@
+.nested-fields.panel.panel-default
+  .panel-heading
+    Alternative
+  .panel-body
+    .form-group
+      = f.label :body
+      = f.text_field :body,
+        class: 'form-control'
+    .form-group
+      = f.check_box :truth_value
+      = f.label :truth_value, 'Correct answer?'
+    .form-group
+      = f.label :explanation
+      = f.text_field :explanation,
+        class: 'form-control'
+    = link_to_remove_association "Remove alternative", f,
+      class: 'btn btn-danger btn-sm'

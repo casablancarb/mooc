@@ -46,3 +46,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'haml'
 gem 'draper', '~> 1.0'
+gem 'cocoon'
