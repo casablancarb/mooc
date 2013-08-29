@@ -1,23 +1,29 @@
 .container
   .page-header
-    = link_to 'Add exercise', new_admin_section_exercise_path(@section),
-      class: 'btn btn-success pull-right'
-    %h1
-      = @section.title
-      %br
-      %small
-        = @course.summary
+    .row
+      .col-md-8
+        %h1
+          = @section.title
+          %br
+          %small
+            = @course.summary
+      .col-md-4.text-right
+        = link_to 'Edit course section', new_admin_section_exercise_path(@section),
+          class: 'btn btn-default btn-lg'
 
-  %table.table.table-hover
+  %table.table.table-striped
     - @section.exercises.each do |exercise|
       %tr
         %td.lead
           = exercise.title
         %td.text-right
-          = link_to 'Edit', edit_admin_section_exercise_path(@section, exercise),
+          = link_to 'Edit exercise', edit_admin_section_exercise_path(@section, exercise),
             class: 'btn btn-default'
           = button_to 'Delete', admin_section_exercise_path(@section, exercise),
             method: :delete,
             class: 'btn btn-danger',
             confirm: "Are you sure you want to delete #{exercise.title}"
+
+  = link_to 'Add exercise', new_admin_section_exercise_path(@section),
+    class: 'btn btn-success'
 

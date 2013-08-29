@@ -1,11 +1,9 @@
 .container
 
   .page-header
-    = link_to "Create new course", new_admin_course_path,
-      class: 'btn btn-success pull-right'
     %h1 Courses I'm running
 
-  %table.table.table-hover
+  %table.table.table-striped
     - @courses.each do |course|
       %tr
         %td.lead
@@ -17,4 +15,7 @@
             method: :delete,
             confirm: "Are you really sure you want to delete #{course.title}?",
             class: 'btn btn-danger'
+
+  = link_to "Create new course", new_admin_course_path,
+    class: 'btn btn-success btn-lg'
 

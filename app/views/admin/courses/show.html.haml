@@ -8,10 +8,8 @@
           %small
             = @course.when
       .col-md-4.text-right
-        = link_to 'Add course section', new_admin_course_section_path(@course),
-          class: 'btn btn-success'
-        = link_to 'Edit course', edit_admin_course_path(@course),
-          class: 'btn btn-default'
+        = link_to 'Edit course info', edit_admin_course_path(@course),
+          class: 'btn btn-default btn-lg'
 
   %table.table.table-striped
     %tr
@@ -31,4 +29,7 @@
             confirm: "Are you sure you want to remove the section #{section.title}",
             method: :delete,
             class: 'btn btn-danger'
+
+  = link_to 'Add course section', new_admin_course_section_path(@course),
+    class: 'btn btn-success'
 
