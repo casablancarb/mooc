@@ -1,0 +1,9 @@
+.container
+  .page-header
+    %h1
+      Question for
+      %span.text-muted
+        = @question.exercise.title
+
+  %p.lead
+    = @question.body

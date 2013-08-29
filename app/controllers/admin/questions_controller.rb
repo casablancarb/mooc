@@ -1,5 +1,5 @@
 class Admin::QuestionsController < ApplicationController
-  before_filter :set_exercise_instance_variable
+  before_filter :set_exercise_instance_variable, except:[:show]
 
   def new
     @question = Question.new
@@ -23,6 +23,15 @@ class Admin::QuestionsController < ApplicationController
     end
   end
 
+  def show
+    @question = Question.find params[:id]
+    unless QuestionPolicy.user_can_edit?(current_user, @question)
+      flash[:error] = 'Unauthorized'
+      redirect_to :root
+    end
+    build_breadcrumb
+  end
+
   private
 
   def app_params
@@ -34,6 +43,7 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def build_breadcrumb
+    @exercise ||= @question.exercise
     section = @exercise.section
     course = section.course.decorate
     @breadcrumbs = [
@@ -41,7 +51,7 @@ class Admin::QuestionsController < ApplicationController
       Breadcrumb.new("#{course.title}, #{course.decorate.when}", admin_course_path(course)),
       Breadcrumb.new(section.title, admin_course_section_path(course, section)),
       Breadcrumb.new(@exercise.title, admin_section_exercise_path(section, @exercise)),
-      Breadcrumb.new("#{@question && @question.body && @question.body[0..5] || 'New question'}")
+      Breadcrumb.new("#{@question && 'Question' || 'New question'}")
     ]
   end
 
