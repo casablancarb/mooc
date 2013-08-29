@@ -1,35 +1,41 @@
 class Admin::QuestionsController < ApplicationController
+  before_filter :set_question_instance_variable
   before_filter :set_exercise_instance_variable, except:[:show]
+  before_filter :build_breadcrumb
 
   def new
-    @question = Question.new
-    build_breadcrumb
   end
 
   def create
-    @question = Question.new app_params
     @question.exercise = Exercise.find params[:exercise_id]
-    if QuestionPolicy.user_can_edit?(current_user, @question)
-      if @question.save
-        flash[:success] = 'Question successfully added'
-        redirect_to admin_section_exercise_path(@question.exercise.section, @question.exercise)
-      else
-        flash[:error] = 'Question could not be created'
-        render 'new'
-      end
+    ensure_access_rights!
+    if @question.save
+      flash[:success] = 'Question successfully added'
+      redirect_to admin_section_exercise_path(@question.exercise.section, @question.exercise)
     else
-      flash[:error] = 'Unauthorized'
-      redirect_to :root
+      flash[:error] = 'Question could not be created'
+      render 'new'
     end
   end
 
   def show
+    ensure_access_rights!
+  end
+
+  def edit
+    ensure_access_rights!
+  end
+
+  def update
     @question = Question.find params[:id]
-    unless QuestionPolicy.user_can_edit?(current_user, @question)
-      flash[:error] = 'Unauthorized'
-      redirect_to :root
+    ensure_access_rights!
+    if @question.update app_params
+      flash[:success] = 'Successfully updated question'
+      redirect_to admin_question_path(@question)
+    else
+      flash[:error] = 'Could not update question'
+      render 'edit'
     end
-    build_breadcrumb
   end
 
   private
@@ -38,8 +44,29 @@ class Admin::QuestionsController < ApplicationController
     params.require(:question).permit(:body)
   end
 
+  def ensure_access_rights!
+    unless QuestionPolicy.user_can_edit?(current_user, @question)
+      flash[:error] = 'Unauthorized'
+      redirect_to :root
+    end
+  end
+
+  def set_question_instance_variable
+    if params[:id]
+      @question = Question.find params[:id]
+    elsif params[:question]
+      @question = Question.new app_params
+    else
+      @question = Question.new
+    end
+  end
+
   def set_exercise_instance_variable
-    @exercise = Exercise.find params[:exercise_id]
+    if @question.exercise
+      @question.exercise
+    else
+      @exercise = Exercise.find params[:exercise_id]
+    end
   end
 
   def build_breadcrumb
