@@ -4,7 +4,7 @@ class Admin::CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find params[:id]
+    @course = Course.find(params[:id]).decorate
     unless @course.owned_by? current_user
       flash[:error] = "Unauthorized"
       redirect_to admin_courses_path
