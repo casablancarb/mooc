@@ -9,7 +9,7 @@
     - @courses.each do |course|
       %tr
         %td.lead
-          = link_to course.title, course
+          = link_to course.title, [:admin, course]
         %td.text-right
           = link_to "Edit", edit_admin_course_path(course),
             class: 'btn btn-default'
