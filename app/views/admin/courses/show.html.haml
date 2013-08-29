@@ -16,7 +16,7 @@
     - @course.sections.each do |section|
       %tr
         %td.lead
-          = link_to section.title, admin_course_sections_path(section)
+          = link_to section.title, admin_course_section_path(@course, section)
         %td
           = section.description
         %td.text-right
