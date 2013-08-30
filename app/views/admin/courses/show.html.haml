@@ -13,30 +13,34 @@
 
   %table.table.table-striped
     %tr
+      %th Order
       %th Course section
       %th Description
       %th
     - @course.sections.each do |section|
       %tr
+        %td
+          = button_to admin_section_down_path(section),
+            method: :post,
+            class: 'btn btn-muted btn-sm #{}',
+            disabled: (@course.sections.last == section) do
+            %i.icon-arrow-down
+          = button_to admin_section_up_path(section),
+            method: :post,
+            class: 'btn btn-muted btn-sm',
+            disabled: (@course.sections.first == section) do
+            %i.icon-arrow-up
         %td.lead
           = link_to section.title, admin_course_section_path(@course, section)
         %td
           = section.description
         %td.text-right
           = link_to 'Edit section', edit_admin_course_section_path(@course, section),
-            class: 'btn btn-default'
+            class: 'btn btn-default btn-sm'
           = button_to 'Delete', admin_course_section_path(@course, section),
             confirm: "Are you sure you want to remove the section #{section.title}",
             method: :delete,
-            class: 'btn btn-danger'
-          = button_to admin_section_up_path(section),
-            method: :post,
-            class: 'btn btn-default'  do
-            %i.icon-arrow-up
-          = button_to admin_section_down_path(section),
-            method: :post,
-            class: 'btn btn-default'  do
-            %i.icon-arrow-down
+            class: 'btn btn-danger btn-sm'
 
   = link_to 'Add course section', new_admin_course_section_path(@course),
     class: 'btn btn-success'
