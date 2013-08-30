@@ -24,12 +24,6 @@ class CourseDecorator < BaseDecorator
   end
 
   def progress
-    return 0 if sections.length < 1
-    progress = 0
-    total = sections.length * 100
-    sections.each do |s|
-      progress += s.progress
-    end
-    (progress.to_f / total * 100).to_i
+    ProgressCalculator.calculateProgress(sections)
   end
 end

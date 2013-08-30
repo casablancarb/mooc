@@ -11,6 +11,7 @@ SnabbspolaSe::Application.routes.draw do
   resources :users
 
   resources :sections, :only => [:show]
+  resources :exercises, :only => [:show]
 
   get 'admin' => 'admin/courses#index'
   get 'teaching' => 'admin/courses#index' #TODO: This oughta replace the above

@@ -3,17 +3,15 @@ class SectionDecorator < BaseDecorator
     model.course.decorate
   end
 
+  def exercises
+    model.exercises.decorate
+  end
+
   def progress_class
     ProgressCalculator.progress_to_class progress
   end
 
   def progress
-    fake_progress
-  end
-
-  private
-
-  def fake_progress
-    22
+    ProgressCalculator.calculateProgress(exercises)
   end
 end
