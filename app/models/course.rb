@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   belongs_to :user
   has_many :admissions
-  has_many :sections
+  has_many :sections, order: :position
   validates_length_of :semester, in: 1..2
   validates_presence_of :user, :title, :semester, :year, :admission_code
   validates_uniqueness_of :admission_code

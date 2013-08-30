@@ -20,6 +20,8 @@ SnabbspolaSe::Application.routes.draw do
     resources :courses do
       resources :sections, except: [:index]
     end
+    post 'sections/:id/up' => 'sections#up', as: 'section_up'
+    post 'sections/:id/down' => 'sections#down', as: 'section_down'
     resources :sections, only:[] do
       resources :exercises, except:[:index]
     end

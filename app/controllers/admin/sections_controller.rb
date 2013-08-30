@@ -1,8 +1,9 @@
 class Admin::SectionsController < ApplicationController
-  before_filter :set_course_variable
-  before_filter :make_sure_course_is_writable
-  before_filter :set_section_variable, only: [:edit, :update, :destroy, :show]
-  before_filter :make_sure_section_is_writable, only: [:edit, :update, :destroy, :show]
+  before_filter :set_course_variable, except: [:up, :down]
+  before_filter :set_section_variable, only: [:edit, :update, :destroy, :show, :up, :down]
+  before_filter :make_sure_course_is_writable, except: [:up, :down]
+  before_filter :make_sure_section_is_writable, only: [:edit, :update, :destroy, :show, :up, :down]
+
 
   def new
     @section = Section.new
@@ -44,6 +45,16 @@ class Admin::SectionsController < ApplicationController
     redirect_to admin_course_path(@course)
   end
 
+  def up
+    @section.move_higher
+    redirect_to admin_course_path(@section.course)
+  end
+
+  def down
+    @section.move_lower
+    redirect_to admin_course_path(@section.course)
+  end
+
   private
 
   def build_breadcrumb
@@ -66,6 +77,7 @@ class Admin::SectionsController < ApplicationController
   end
 
   def make_sure_section_is_writable
+    @section ||= @course.section
     unless @section.course.user.id == current_user.id
       flash[:error] = 'Unauthorized'
       redirect_to admin_courses_path

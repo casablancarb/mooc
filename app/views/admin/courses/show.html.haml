@@ -29,6 +29,14 @@
             confirm: "Are you sure you want to remove the section #{section.title}",
             method: :delete,
             class: 'btn btn-danger'
+          = button_to admin_section_up_path(section),
+            method: :post,
+            class: 'btn btn-default'  do
+            %i.icon-arrow-up
+          = button_to admin_section_down_path(section),
+            method: :post,
+            class: 'btn btn-default'  do
+            %i.icon-arrow-down
 
   = link_to 'Add course section', new_admin_course_section_path(@course),
     class: 'btn btn-success'
