@@ -12,6 +12,8 @@ SnabbspolaSe::Application.routes.draw do
 
   resources :sections, :only => [:show]
   resources :exercises, :only => [:show]
+  
+  post 'questions/:id/answer' => 'answers#create', as: 'question_answers'
 
   get 'admin' => 'admin/courses#index'
   get 'teaching' => 'admin/courses#index' #TODO: This oughta replace the above
