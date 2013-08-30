@@ -1,5 +1,5 @@
 class Admin::ExercisesController < ApplicationController
-  before_filter :set_section_instance_variable
+  before_filter :set_section_instance_variable, except: [:up, :down]
 
   def new
     @exercise = Exercise.new
@@ -64,6 +64,28 @@ class Admin::ExercisesController < ApplicationController
       flash[:error] = 'Could not add exercise'
     end
     redirect_to admin_course_section_path(@section.course, @section)
+  end
+
+  def up
+    @exercise = Exercise.find params[:id]
+    if ExercisePolicy.user_can_edit?(current_user, @exercise)
+      @exercise.move_higher
+      redirect_to admin_course_section_path(@exercise.section.course, @exercise.section)
+    else
+      flash[:error] = 'Unauthorized'
+      redirect_to :root
+    end
+  end
+
+  def down
+    @exercise = Exercise.find params[:id]
+    if ExercisePolicy.user_can_edit?(current_user, @exercise)
+      @exercise.move_lower
+      redirect_to admin_course_section_path(@exercise.section.course, @exercise.section)
+    else
+      flash[:error] = 'Unauthorized'
+      redirect_to :root
+    end
   end
 
   private

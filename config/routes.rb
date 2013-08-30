@@ -28,6 +28,8 @@ SnabbspolaSe::Application.routes.draw do
     resources :exercises, only:[] do
       resources :questions, only:[:new, :create, :update]
     end
+    post 'exercises/:id/up' => 'exercises#up', as: 'exercise_up'
+    post 'exercises/:id/down' => 'exercises#down', as: 'exercise_down'
     resources :questions, except:[:new, :create, :update]
     post 'questions/:id/up' => 'questions#up', as: 'question_up'
     post 'questions/:id/down' => 'questions#down', as: 'question_down'

@@ -12,8 +12,18 @@
           class: 'btn btn-default btn-lg'
 
   %table.table.table-striped
+    %tr
+      %th Order
+      %th Exercise
+      %th
     - @section.exercises.each do |exercise|
       %tr
+        %td
+          = render 'shared/order_button_pair',
+            model: exercise,
+            all: @section.exercises,
+            up_path: admin_exercise_up_path(exercise),
+            down_path: admin_exercise_down_path(exercise)
         %td.lead
           = link_to exercise.title, admin_section_exercise_path(@section, exercise)
         %td.text-right
