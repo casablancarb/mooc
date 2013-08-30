@@ -4,3 +4,12 @@
       Exercise
       %small
         = @exercise.title
+
+  .row
+    .col-md-7
+      %iframe{ width:'100%', height:'400', src:"//www.youtube.com/embed/#{@exercise.video_id}", frameborder:'0', allowfullscreen:'true' }
+  
+    .col-md-5
+      %h4 About
+      %p
+        = @exercise.description
