@@ -5,4 +5,5 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :alternatives,
     reject_if: :all_blank,
     allow_destroy: true
+  acts_as_list scope: :exercise
 end

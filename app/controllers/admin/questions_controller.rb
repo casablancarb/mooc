@@ -1,6 +1,6 @@
 class Admin::QuestionsController < ApplicationController
   before_filter :set_question_instance_variable
-  before_filter :set_exercise_instance_variable, except:[:show]
+  before_filter :set_exercise_instance_variable, except:[:show, :up, :down]
   before_filter :build_breadcrumb
 
   def new
@@ -37,6 +37,18 @@ class Admin::QuestionsController < ApplicationController
       flash[:error] = 'Could not update question'
       render 'edit'
     end
+  end
+
+  def up
+    @question.move_higher
+    redirect_to admin_section_exercise_path(@question.exercise.section,
+                                           @question.exercise)
+  end
+
+  def down
+    @question.move_lower
+    redirect_to admin_section_exercise_path(@question.exercise.section,
+                                           @question.exercise)
   end
 
   private

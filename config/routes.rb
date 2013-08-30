@@ -29,6 +29,8 @@ SnabbspolaSe::Application.routes.draw do
       resources :questions, only:[:new, :create, :update]
     end
     resources :questions, except:[:new, :create, :update]
+    post 'questions/:id/up' => 'questions#up', as: 'question_up'
+    post 'questions/:id/down' => 'questions#down', as: 'question_down'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
