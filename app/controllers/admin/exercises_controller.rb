@@ -61,7 +61,8 @@ class Admin::ExercisesController < ApplicationController
       @exercise.destroy
       flash[:success] = 'Successfully removed exercise'
     else
-      flash[:error] = 'Could not add exercise'
+      flash[:error] = 'Unauthorized'
+      redirect_to :root
     end
     redirect_to admin_course_section_path(@section.course, @section)
   end
