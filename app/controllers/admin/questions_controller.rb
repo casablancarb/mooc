@@ -1,7 +1,12 @@
 class Admin::QuestionsController < ApplicationController
-  before_filter :set_question_instance_variable
+  before_filter :set_question_instance_variable, except:[:index]
   before_filter :set_exercise_instance_variable, except:[:show, :up, :down]
+  before_filter :set_questions_instance_variable, only:[:index]
   before_filter :build_breadcrumb
+
+  def index
+    #TODO: Need permissions-check
+  end
 
   def new
   end
@@ -41,14 +46,12 @@ class Admin::QuestionsController < ApplicationController
 
   def up
     @question.move_higher
-    redirect_to admin_section_exercise_path(@question.exercise.section,
-                                           @question.exercise)
+    redirect_to admin_exercise_questions_path(@exercise)
   end
 
   def down
     @question.move_lower
-    redirect_to admin_section_exercise_path(@question.exercise.section,
-                                           @question.exercise)
+    redirect_to admin_exercise_questions_path(@exercise)
   end
 
   private
@@ -65,6 +68,10 @@ class Admin::QuestionsController < ApplicationController
     end
   end
 
+  def set_questions_instance_variable
+    @questions = QuestionDecorator.decorate_collection(@exercise.questions)
+  end
+
   def set_question_instance_variable
     if params[:id]
       @question = Question.find params[:id]
@@ -76,7 +83,7 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def set_exercise_instance_variable
-    if @question.exercise
+    if @question && @question.exercise
       @question.exercise
     else
       @exercise = Exercise.find params[:exercise_id]
@@ -87,12 +94,21 @@ class Admin::QuestionsController < ApplicationController
     @exercise ||= @question.exercise
     section = @exercise.section
     course = section.course.decorate
+    
+    if @questions
+      last = 'Questions'
+    elsif @question
+      last = 'Question'
+    else
+      last = 'New question'
+    end
+
     @breadcrumbs = [
       Breadcrumb.new('My teaching', admin_courses_path),
       Breadcrumb.new("#{course.title}, #{course.decorate.when}", admin_course_path(course)),
       Breadcrumb.new(section.title, admin_course_section_path(course, section)),
       Breadcrumb.new(@exercise.title, admin_section_exercise_path(section, @exercise)),
-      Breadcrumb.new("#{@question && 'Question' || 'New question'}")
+      Breadcrumb.new(last)
     ]
   end
 
