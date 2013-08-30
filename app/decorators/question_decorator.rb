@@ -34,7 +34,6 @@ class QuestionDecorator < BaseDecorator
   end
 
   def ok?
-  #  number_of_correct_alternatives >= 1 && number_of_incorrect_alternatives >= 1
     number_of_correct_alternatives >= 1
   end
 
