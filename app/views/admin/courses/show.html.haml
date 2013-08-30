@@ -20,16 +20,11 @@
     - @course.sections.each do |section|
       %tr
         %td
-          = button_to admin_section_down_path(section),
-            method: :post,
-            class: 'btn btn-muted btn-sm #{}',
-            disabled: (@course.sections.last == section) do
-            %i.icon-arrow-down
-          = button_to admin_section_up_path(section),
-            method: :post,
-            class: 'btn btn-muted btn-sm',
-            disabled: (@course.sections.first == section) do
-            %i.icon-arrow-up
+          = render 'shared/order_button_pair',
+            model: section,
+            all: @course.sections,
+            up_path: admin_section_up_path(section),
+            down_path: admin_section_down_path(section)
         %td.lead
           = link_to section.title, admin_course_section_path(@course, section)
         %td

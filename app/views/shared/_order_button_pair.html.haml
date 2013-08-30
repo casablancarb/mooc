@@ -1,0 +1,10 @@
+= button_to down_path,
+  method: :post,
+  class: 'btn btn-muted btn-sm #{}',
+  disabled: (all.last == model) do
+  %i.icon-arrow-down
+= button_to up_path,
+  method: :post,
+  class: 'btn btn-muted btn-sm',
+  disabled: (all.first == model) do
+  %i.icon-arrow-up
