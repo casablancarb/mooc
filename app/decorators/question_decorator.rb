@@ -22,6 +22,22 @@ class QuestionDecorator < BaseDecorator
     end
   end
 
+  def question_status_class
+    case question_status
+    when 0
+      'danger'
+    when 1
+      'warning'
+    else
+      'success'
+    end
+  end
+
+  def ok?
+  #  number_of_correct_alternatives >= 1 && number_of_incorrect_alternatives >= 1
+    number_of_correct_alternatives >= 1
+  end
+
   def correct_alternatives_status_class
     wrongs = number_of_alternatives - number_of_correct_alternatives
     if number_of_correct_alternatives > 0
@@ -36,5 +52,11 @@ class QuestionDecorator < BaseDecorator
     else
       'danger'
     end
+  end
+
+  private
+  
+  def number_of_incorrect_alternatives
+    number_of_alternatives - number_of_correct_alternatives
   end
 end

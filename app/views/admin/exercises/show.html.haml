@@ -12,10 +12,26 @@
 
   .row
     .col-md-6
+      %iframe{ width:'100%', height:'315', src:"//www.youtube.com/embed/#{@exercise.video_id}", frameborder:'0', allowfullscreen:'true' }
       %p.lead
         = @exercise.description
-      %iframe{ width:'100%', height:'315', src:"//www.youtube.com/embed/#{@exercise.video_id}", frameborder:'0', allowfullscreen:'true' }
     
     .col-md-6
-      %p
-        Insert question summary here
+      %p.lead
+        This exercise has currently
+        %span.text-primary
+          #{@exercise.number_of_questions} questions
+        - if @exercise.contain_questions?
+          of which
+          - if @exercise.contain_bad_questions?
+            %span.text-danger
+              #{@exercise.number_of_bad_questions} are incomplete
+          and
+          - if @exercise.contain_ok_questions?
+            %span.text-success
+              #{@exercise.number_of_ok_questions} complete
+            = '.'
+
+      = link_to "Edit this exercise's questions",
+        admin_exercise_questions_path(@exercise),
+        class: "btn btn-#{@exercise.questions_status_class}"
