@@ -7,4 +7,12 @@ class Question < ActiveRecord::Base
     reject_if: :all_blank,
     allow_destroy: true
   acts_as_list scope: :exercise
+
+  def self.available_to_user(user)
+    joins(:exercise).
+      merge(Exercise.joins(:section)).
+      merge(Section.joins(:course)).
+      merge(Course.joins(:admissions)).
+      merge(Admission.joins(:user).where(:user_id => user.id))
+  end
 end
