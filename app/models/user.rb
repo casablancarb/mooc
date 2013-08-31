@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def courses_admitted_to
     admissions.joins(:courses)
   end
+
+  def thinks_alternative_is_correct?(alternative)
+    alternative.is_selected_by_user? self
+  end
 end

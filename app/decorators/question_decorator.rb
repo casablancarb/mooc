@@ -53,6 +53,14 @@ class QuestionDecorator < BaseDecorator
     end
   end
 
+  def answer_status_class_for_user(user)
+    is_correctly_answered_by_user?(user) ? 'success' : 'danger'
+  end
+
+  def explanation_for_user(user)
+    answer_from_user(user).alternative.explanation
+  end
+
   private
   
   def number_of_incorrect_alternatives

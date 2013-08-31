@@ -4,10 +4,20 @@
 
   = form_for [question, Answer.new],
     url: question_answers_path(question),
+    remote: true,
+    html: { class: 'question-form' },
     via: :post do |f|
     - question.alternatives.each do |alternative|
       .form-group.radio
-        = f.radio_button :alternative_id, alternative.id
+        = f.radio_button :alternative_id,
+          alternative.id,
+          checked: current_user.thinks_alternative_is_correct?(alternative)
         = f.label :"alternative_id_#{alternative.id}", alternative.body
+    .form-group
+      = f.submit "Correct?",
+        class: "btn btn-muted btn-sm"
+
+  .explanation{ :"data-question"=>"#{question.id}", :class => "text-#{question.answer_status_class_for_user(current_user)}" }
+    = question.explanation_for_user(current_user)
 
   %hr

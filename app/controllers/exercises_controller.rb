@@ -1,6 +1,6 @@
 class ExercisesController < ApplicationController
   def show
-    @exercise = Exercise.find params[:id]
+    @exercise = Exercise.find(params[:id]).decorate
 
     @breadcrumbs = [
       Breadcrumb.new('My studies', studies_path),
