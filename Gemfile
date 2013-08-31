@@ -53,6 +53,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.0'
   gem 'database_cleaner'
+  gem 'factory_girl_rails', '~> 4.2'
 end
 
 gem 'hirb', group: :development
