@@ -36,16 +36,10 @@ class ExerciseDecorator < BaseDecorator
   end
 
   def progress_class
-    ProgressCalculator.progress_to_class progress
+    ProgressCalculator.progress_to_class(progress)
   end
 
   def progress
-    fake_progress
-  end
-
-  private
-
-  def fake_progress
-    22
+    ProgressCalculator.calculate_progress_from_questions_for_user(questions, @user)
   end
 end
