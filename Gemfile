@@ -52,8 +52,10 @@ gem 'acts_as_list'
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.0'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '1.0.1'
   gem 'factory_girl_rails', '~> 4.2'
+  gem 'launchy', '~> 2.1.2'
+  gem 'selenium-webdriver'
 end
 
 gem 'hirb', group: :development
