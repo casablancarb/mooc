@@ -1,4 +1,8 @@
 $(function(){
+  $('.question-form input[type="radio"]').click(function(){
+    $(this).closest('form').submit();
+  });
+
   $('.question-form').bind('ajax:success', function(evt, data){
     var questionId  = data.question_id;
     $('[data-question='+questionId+']')
