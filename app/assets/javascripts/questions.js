@@ -1,9 +1,9 @@
 $(function(){
-  $('.question-form input[type="radio"]').click(function(){
+  $(document).on('click', 'input', function(){
     $(this).closest('form').submit();
   });
 
-  $('.question-form').bind('ajax:success', function(evt, data){
+  $(document).on('ajax:success', '.question-form', function(evt, data){
     var questionId  = data.question_id;
     $('[data-question='+questionId+']')
       .toggleClass('text-success', data.truth_value)
@@ -12,7 +12,7 @@ $(function(){
       .html(data.explanation);
   });
 
-  $('.question-form').bind('ajax:beforeSend', function(){
+  $(document).on('ajax:beforeSend', '.question-form', function(){
     $(this).next('.explanation')
       .toggleClass('text-success', false)
       .toggleClass('text-danger', false)
