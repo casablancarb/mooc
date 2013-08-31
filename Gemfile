@@ -48,6 +48,9 @@ gem 'haml'
 gem 'draper', '~> 1.0'
 gem 'cocoon'
 gem 'acts_as_list'
-gem 'rspec-rails', '~> 2.0'
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'rspec-rails', '~> 2.0'
+end
 
 gem 'hirb', group: :development
