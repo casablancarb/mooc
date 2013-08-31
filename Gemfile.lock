@@ -56,6 +56,7 @@ GEM
       cucumber (>= 1.2.0)
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
+    database_cleaner (1.1.1)
     diff-lcs (1.2.4)
     draper (1.2.1)
       actionpack (>= 3.0)
@@ -162,6 +163,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.0.0)
   cucumber-rails
+  database_cleaner
   draper (~> 1.0)
   haml
   hirb
