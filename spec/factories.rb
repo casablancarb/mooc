@@ -4,9 +4,7 @@ FactoryGirl.define do
   factory :user do
     firstname 'Jane'
     lastname 'Doe'
-    sequence :email do |n|
-      "jane#{n}@example.com"
-    end
+    email 'jane@example.com'
     password '123'
     password_confirmation '123'
   end
@@ -15,7 +13,7 @@ FactoryGirl.define do
     title 'Philosophy and Programming'
     year 2013
     semester 1
-    admission_code 123
+    admission_code Random.rand(2000)
     user
   end
 
@@ -52,7 +50,7 @@ FactoryGirl.define do
     end
 
     factory :incorrect_alternative do
-      body 'red'
+      body 'blue'
       explanation 'The reason red is red is that it\'s red'
       truth_value true
     end
