@@ -9,13 +9,18 @@
       = link_to exercise,
         class: 'list-group-item' do
 
-        %h4.list-group-item-heading
-          = exercise.title
+        .row
+          .col-md-1.text-center
+            %i.icon-play-sign.icon-lg{ class:"text-#{exercise.progress_class}" }
 
-        .list-group-item-text
-          %p
-            #{exercise.progress}% finished
-            .progress.progress-striped
-              .progress-bar{ class: "progress-bar-#{exercise.progress_class}",
-                style: "width: #{exercise.progress}%" }
+          .col-md-11
+            %h4.list-group-item-heading
+              = exercise.title
+
+            .list-group-item-text
+              %p
+                #{exercise.progress}% finished
+                .progress.progress-striped
+                  .progress-bar{ class: "progress-bar-#{exercise.progress_class}",
+                    style: "width: #{exercise.progress}%" }
 
