@@ -1,23 +1,4 @@
 $(function(){
-    /*
-  $('form').submit(function() {
-    alert("submiiiit");
-
-    var valuesToSubmit = $(this).serialize();
-
-    $.ajax({
-      url: $(this).attr('action'), //sumbits it to the given url of the form
-      data: valuesToSubmit,
-      method: 'POST',
-      dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-    }).success(function(json){
-      alert("payloooad");
-      //act on result.
-    });
-    return false; // prevents normal behaviour
-  });
- */
-
   $('.question-form').bind('ajax:success', function(evt, data){
     var questionId  = data.question_id;
     $('[data-question='+questionId+']')
