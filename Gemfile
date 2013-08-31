@@ -48,3 +48,5 @@ gem 'haml'
 gem 'draper', '~> 1.0'
 gem 'cocoon'
 gem 'acts_as_list'
+
+gem 'hirb', group: :development
