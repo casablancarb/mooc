@@ -59,6 +59,10 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+group :staging do
+  gem 'mysql2'
+end
+
 group :production do
   gem 'mysql2'
 end
