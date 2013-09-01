@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831182835) do
+ActiveRecord::Schema.define(version: 20130901162235) do
 
   create_table "admissions", force: true do |t|
     t.integer  "user_id"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20130831182835) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_teacher",      default: false
   end
 
 end
