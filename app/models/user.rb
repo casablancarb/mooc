@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def thinks_alternative_is_correct?(alternative)
     alternative.is_selected_by_user? self
   end
+
+  def is_teacher?
+    is_teacher
+  end
 end
