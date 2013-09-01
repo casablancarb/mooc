@@ -37,10 +37,13 @@
           %a{href: "#{studies_path}"}
             %i.icon-home
             My studies
-        %li
-          %a{href: "#{teaching_path}"}
-            %i.icon-microphone
-            My teaching
+
+        - if current_user.is_teacher?
+          %li
+            %a{href: "#{teaching_path}"}
+              %i.icon-microphone
+              My teaching
+
         %li
           %a{href: "/courses"}
             %i.icon-archive
