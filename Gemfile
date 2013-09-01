@@ -59,4 +59,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+group :production do
+  gem 'mysql2'
+end
+
 gem 'hirb', group: :development
