@@ -1,4 +1,4 @@
-class Admin::ExercisesController < ApplicationController
+class Admin::ExercisesController < Admin::AdminController
   before_filter :set_section_instance_variable, except: [:up, :down]
 
   def new

@@ -1,4 +1,4 @@
-class Admin::SectionsController < ApplicationController
+class Admin::SectionsController < Admin::AdminController
   before_filter :set_course_variable, except: [:up, :down]
   before_filter :set_section_variable, only: [:edit, :update, :destroy, :show, :up, :down]
   before_filter :make_sure_course_is_writable, except: [:up, :down]

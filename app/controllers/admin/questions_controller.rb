@@ -1,4 +1,4 @@
-class Admin::QuestionsController < ApplicationController
+class Admin::QuestionsController < Admin::AdminController
   before_filter :set_question_instance_variable, except:[:index]
   before_filter :set_exercise_instance_variable, except:[:show, :up, :down]
   before_filter :set_questions_instance_variable, only:[:index]
