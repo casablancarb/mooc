@@ -1,5 +1,5 @@
 $(function(){
-  $(document).on('click', 'input', function(){
+  $(document).on('click', '.question-form input[type="radio"]', function(){
     $(this).closest('form').submit();
   });
 
