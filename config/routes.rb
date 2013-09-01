@@ -1,5 +1,5 @@
 SnabbspolaSe::Application.routes.draw do
-  root 'pages#studies'
+  root 'pages#welcome'
 
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
