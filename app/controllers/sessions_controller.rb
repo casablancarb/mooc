@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_before_filter :authorize
 
   def new
+    redirect_to :root if current_user
   end
 
   def create
