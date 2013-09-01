@@ -2,19 +2,25 @@
   .page-header
     %h1 My studies
 
-  .list-group
-    - @courses.each do |course|
-      = link_to course,
-        class:'list-group-item' do
+  - if @courses.length > 0
+    .list-group
+      - @courses.each do |course|
+        = link_to course,
+          class:'list-group-item' do
 
-        %h4.list-group-item-heading
-          = course.title
+          %h4.list-group-item-heading
+            = course.title
 
-        .list-group-item-text
-          %p
-            #{course.progress}% finished
-            .progress.progress-striped
-              .progress-bar{ class:"progress-bar-#{course.progress_class}",
-                style: "width: #{course.progress}%;"}
+          .list-group-item-text
+            %p
+              #{course.progress}% finished
+              .progress.progress-striped
+                .progress-bar{ class:"progress-bar-#{course.progress_class}",
+                  style: "width: #{course.progress}%;"}
+  - else
+    %h3
+      You are currenly admitted to no courses.
+    %p
+    Please go to the course catalog and apply for the courses you are participating in.
 
 
