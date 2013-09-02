@@ -7,18 +7,22 @@
       %small
         = @course.when
 
-  .list-group
-    - @course.sections.each do |section|
-      = link_to section,
-        class: 'list-group-item' do
+  - if @course.sections.length > 0
+    .list-group
+      - @course.sections.each do |section|
+        = link_to section,
+          class: 'list-group-item' do
 
-        %h4.list-group-item-heading
-          = section.title
+          %h4.list-group-item-heading
+            = section.title
 
-        .list-group-item-text
-          %p
-            #{section.progress}% finished
-            .progress.progress-striped
-              .progress-bar{ class: "progress-bar-#{section.progress_class}",
-                style: "width: #{section.progress}%" }
+          .list-group-item-text
+            %p
+              #{section.progress}% finished
+              .progress.progress-striped
+                .progress-bar{ class: "progress-bar-#{section.progress_class}",
+                  style: "width: #{section.progress}%" }
+  - else
+    %p
+      This course currently has no sections. Please check back soon :)
 
