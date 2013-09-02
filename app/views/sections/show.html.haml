@@ -4,23 +4,27 @@
     %h1
       = @section.title
 
-  .list-group
-    - @section.exercises.each do |exercise|
-      = link_to exercise,
-        class: 'list-group-item' do
+  - if @section.exercises.length > 0
+    .list-group
+      - @section.exercises.each do |exercise|
+        = link_to exercise,
+          class: 'list-group-item' do
 
-        .row
-          .col-md-1.text-center
-            %i.icon-play-sign.icon-lg{ class:"text-#{exercise.progress_class}" }
+          .row
+            .col-md-1.text-center
+              %i.icon-play-sign.icon-lg{ class:"text-#{exercise.progress_class}" }
 
-          .col-md-11
-            %h4.list-group-item-heading
-              = exercise.title
+            .col-md-11
+              %h4.list-group-item-heading
+                = exercise.title
 
-            .list-group-item-text
-              %p
-                #{exercise.progress}% finished
-                .progress.progress-striped
-                  .progress-bar{ class: "progress-bar-#{exercise.progress_class}",
-                    style: "width: #{exercise.progress}%" }
+              .list-group-item-text
+                %p
+                  #{exercise.progress}% finished
+                  .progress.progress-striped
+                    .progress-bar{ class: "progress-bar-#{exercise.progress_class}",
+                      style: "width: #{exercise.progress}%" }
+  - else
+    %p
+      This section currently has no exercises. Please check back soon :)
 
