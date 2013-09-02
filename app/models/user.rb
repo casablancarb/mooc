@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :courses
   has_many :admissions
   validates_presence_of :email, :password, :firstname, :lastname
+  validates_length_of :password, minimum: 6
 
   def admitted_courses
     admissions.map(&:course).uniq
