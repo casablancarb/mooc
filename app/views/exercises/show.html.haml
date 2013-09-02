@@ -17,4 +17,8 @@
   .page-header
     %h3 Questions
 
-  = render 'questions_forms'
+  - if @exercise.questions.length > 0
+    = render 'questions_forms'
+  - else
+    %p
+      This exercise currently has no questions. Please check back soon :)
