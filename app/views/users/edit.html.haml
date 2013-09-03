@@ -1,0 +1,44 @@
+.container
+  .page-header
+    %h1 Edit profile
+
+  = form_for @user do |f|
+    = render 'shared/form_errors', model: @user
+
+    .form-group
+      = f.label :firstname
+      = f.text_field :firstname,
+        class: 'form-control'
+    .form-group
+      = f.label :lastname
+      = f.text_field :lastname,
+        class: 'form-control'
+    .form-group
+      = f.label :email
+      = f.text_field :email,
+        class: 'form-control'
+
+
+    .form-group
+      = f.label :password, 'New password'
+      = f.password_field :password,
+        class: 'form-control',
+        placeholder: 'Leave empty if you don\'t want to change your password',
+        autocomplete: 'off'
+
+    .form-group
+      = f.label :password_confirmation, 'Confirm new password'
+      = f.password_field :password_confirmation,
+        class: 'form-control',
+        placeholder: 'Leave empty if you don\'t want to change your password',
+        autocomplete: 'off'
+
+    .form-group
+      = f.label :current_password, 'Current password'
+      = f.password_field :current_password,
+        class: 'form-control',
+        placeholder: 'You must supply your password to change your profile'
+
+    = button_to "Save", users_path(@user),
+      method: :put,
+      class: 'btn btn-primary form-control'

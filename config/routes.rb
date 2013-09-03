@@ -6,13 +6,14 @@ SnabbspolaSe::Application.routes.draw do
   get 'register' => 'users#new'
 
   get 'studies' => 'pages#studies'
+  get 'profile' => 'users#edit'
 
   resources :sessions, :only => [:create]
   resources :users
 
   resources :sections, :only => [:show]
   resources :exercises, :only => [:show]
-  
+
   post 'questions/:id/answer' => 'answers#create', as: 'question_answers'
 
   get 'admin' => 'admin/courses#index'
@@ -80,7 +81,7 @@ SnabbspolaSe::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

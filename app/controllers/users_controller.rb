@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :authorize
+  skip_before_filter :authorize, only: [:new, :create]
 
   def new
     @user = User.new params[:user]
@@ -24,6 +24,32 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Admission code is not valid"
       render "new"
+    end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find params[:id]
+    if @user.id == current_user.id
+      if @user.authenticate(params[:user][:current_password])
+        if @user.update app_params
+          flash[:success] = 'Successfully updated profile'
+          redirect_to edit_user_path(@user)
+        else
+          flash[:error] = 'Could not update user'
+          render 'edit'
+        end
+      else
+        flash[:error] = 'Incorrect password'
+        @user.errors.add(:current_password, 'is incorrect')
+        render 'edit'
+      end
+    else
+      flash[:error] = 'Unauthorized'
+      redirect_to :root
     end
   end
 
