@@ -40,6 +40,7 @@
             placeholder: 'Your lastname'
         .form-group
           = f.submit "Register",
+            :'data-no-turbolink' => true,
             class: 'btn btn-primary form-control'
 
         %p.lead
