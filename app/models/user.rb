@@ -32,4 +32,12 @@ class User < ActiveRecord::Base
   def is_teacher?
     is_teacher
   end
+
+  def can_read?(object)
+    if object.respond_to?(:is_readable_by?)
+      object.is_readable_by? self
+    else
+      false
+    end
+  end
 end

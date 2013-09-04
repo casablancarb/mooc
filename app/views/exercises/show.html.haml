@@ -13,6 +13,8 @@
       %h3 About
       %p
         = @exercise.description
+      = link_to 'Leave feedback to the teacher', new_exercise_feedback_path(@exercise),
+        class: 'btn btn-info'
 
   .page-header
     %h3 Questions

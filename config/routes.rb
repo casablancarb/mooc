@@ -12,7 +12,9 @@ SnabbspolaSe::Application.routes.draw do
   resources :users
 
   resources :sections, :only => [:show]
-  resources :exercises, :only => [:show]
+  resources :exercises, :only => [:show] do
+    resources :feedback, :only => [:new, :create]
+  end
 
   post 'questions/:id/answer' => 'answers#create', as: 'question_answers'
 
