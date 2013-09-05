@@ -5,7 +5,7 @@ end
 Given(/^that I am logged in$/) do
   visit '/login'
   fill_in 'email', with: 'jane@example.com'
-  fill_in 'password', with: '123'
+  fill_in 'password', with: '123123'
   click_button 'Log in'
   page.find(:css, '.alert').text.should include('Successfully logged in')
 end
