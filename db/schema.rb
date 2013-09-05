@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904153915) do
+ActiveRecord::Schema.define(version: 20130905120836) do
 
   create_table "admissions", force: true do |t|
     t.integer  "user_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20130904153915) do
     t.integer  "position",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "published",   default: false
   end
 
   create_table "feedback", force: true do |t|
