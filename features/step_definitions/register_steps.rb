@@ -10,3 +10,8 @@ Given(/^I enter my personal information$/) do
   fill_in 'Password', with: '123123'
   fill_in 'Password confirmation', with: '123123'
 end
+
+Given(/^I enter an invalid admission code$/) do
+  course = FactoryGirl.create :course
+  fill_in 'Admission code', with: 'invalid-admission-code'
+end

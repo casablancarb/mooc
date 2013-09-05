@@ -10,3 +10,11 @@ Feature: Register
     And I enter my personal information
     And I click the button "Register"
     Then I should see a successful flash saying "Successfully registered"
+
+  Scenario: Register with an invalid admission code
+    Given I am on the home page
+    And I click the menu item "Register"
+    And I enter an invalid admission code
+    And I enter my personal information
+    And I click the button "Register"
+    Then I should see an error flash saying "Invalid admission code"

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         render "new"
       end
     else
-      flash[:error] = "Admission code is not valid"
+      flash[:error] = "Invalid admission code"
       render "new"
     end
   end
