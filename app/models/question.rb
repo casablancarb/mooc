@@ -14,6 +14,10 @@ class Question < ActiveRecord::Base
       order(:id).last or NoAnswer.new
   end
 
+  def is_readable_by?(user)
+    QuestionPolicy.user_can_read?(user, self)
+  end
+
   def is_correctly_answered_by_user?(user)
     alternative_selected_by_user(user).truth_value == true
   end

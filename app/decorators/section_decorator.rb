@@ -4,7 +4,7 @@ class SectionDecorator < BaseDecorator
   end
 
   def exercises
-    model.exercises.decorate
+    model.published_exercises.decorate
   end
 
   def progress_class

@@ -22,7 +22,7 @@ class AnswersController < ApplicationController
   end
 
   def make_sure_question_is_readable!
-    unless QuestionPolicy.user_can_read?(current_user, @question)
+    unless current_user.can_read?(@question)
       flash[:error] = 'Unauthorized'
       redirect_to :root
     end

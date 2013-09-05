@@ -4,6 +4,6 @@ class QuestionPolicy
   end
 
   def self.user_can_read?(user, question)
-    Question.available_to_user(user).include?(question)
+    Question.available_to_user(user).include?(question) && question.exercise.published == true
   end
 end

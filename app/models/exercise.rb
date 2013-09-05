@@ -10,9 +10,18 @@ class Exercise < ActiveRecord::Base
   end
 
   def self.available_to_user(user)
-    joins(:section).
+    published.joins(:section).
       merge(Section.joins(:course)).
       merge(Course.joins(:admissions)).
       merge(Admission.joins(:user).where(:user_id => user.id))
+  end
+
+  def self.find_published(id)
+    exercise = where(published:true, id:id).first
+    if exercise
+      exercise
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 end
