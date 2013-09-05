@@ -9,12 +9,17 @@ FactoryGirl.define do
     password_confirmation '123123'
   end
 
+  factory :admission do
+    user
+    course
+  end
+
   factory :course do
     title 'Philosophy and Programming'
     year 2013
     semester 1
-    admission_code Random.rand(2000)
     user
+    admission_code{ (Course.count + 12).to_s }
   end
 
   factory :section do
@@ -27,6 +32,7 @@ FactoryGirl.define do
     title 'Practicing the art of deception'
     description 'This exercise will train you in the art of deception'
     video_id 'SOME_VIDEO_ID'
+    published true
     section
   end
 
