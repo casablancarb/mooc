@@ -16,7 +16,7 @@ class AdmissionsController < ApplicationController
         render 'new'
       end
     else
-      flash[:error] = 'Incorrect code'
+      flash[:error] = 'Invalid admission code'
       render 'new'
     end
   end
