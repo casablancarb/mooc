@@ -105,6 +105,6 @@ class Admin::ExercisesController < Admin::AdminController
   end
 
   def app_params
-    params.require(:exercise).permit(:title, :description, :video_id)
+    params.require(:exercise).permit(:title, :description, :video_id, :published)
   end
 end

@@ -17,5 +17,9 @@
       class: 'form-control',
       placeholder: 'youtube.com/watch?v=USE_ONLY_THIS_PART'
   .form-group
+    = f.label :published, 'Published?'
+    = f.select :published, options_for_select([['Published', true], ['Not published', false]], @exercise.published), {},
+      class: 'form-control'
+  .form-group
     = f.submit 'Save',
       class: 'btn btn-primary'

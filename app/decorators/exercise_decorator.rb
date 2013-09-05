@@ -42,4 +42,12 @@ class ExerciseDecorator < BaseDecorator
   def progress
     ProgressCalculator.calculate_progress_from_questions_for_user(questions, @user)
   end
+
+  def published_status
+    published ? 'published' : 'not published'
+  end
+
+  def published_class
+    published ? 'success' : 'warning'
+  end
 end
