@@ -30,6 +30,6 @@ Given(/^I enter incorrect credentials$/) do
   fill_in 'password', with: 'incorrect-password'
 end
 
-Then(/^I should see a error flash saying "(.*?)"$/) do |message|
+Then(/^I should see an error flash saying "(.*?)"$/) do |message|
   page.find(:css, '.alert-error').text.should include(message)
 end

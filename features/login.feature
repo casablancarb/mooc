@@ -17,4 +17,4 @@ Feature: Loggin in
     And I click the menu item "Log in"
     And I enter incorrect credentials
     And I click the button "Log in"
-    Then I should see a error flash saying "Email or password is invalid"
+    Then I should see an error flash saying "Email or password is invalid"
