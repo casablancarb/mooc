@@ -7,6 +7,10 @@ class SectionDecorator < BaseDecorator
     model.published_exercises.decorate
   end
 
+  def all_exercises
+    model.exercises.decorate
+  end
+
   def progress_class
     ProgressCalculator.progress_to_class progress
   end

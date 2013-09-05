@@ -69,7 +69,7 @@ class Admin::SectionsController < Admin::AdminController
   end
 
   def set_section_variable
-    @section = Section.find(params[:id])
+    @section = Section.find(params[:id]).decorate
   end
 
   def make_sure_course_is_writable

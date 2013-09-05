@@ -14,9 +14,10 @@
   %table.table.table-striped
     %tr
       %th Order
+      %th Status
       %th Exercise
       %th
-    - @section.exercises.each do |exercise|
+    - @section.all_exercises.each do |exercise|
       %tr
         %td
           = render 'shared/order_button_pair',
@@ -24,6 +25,9 @@
             all: @section.exercises,
             up_path: admin_exercise_up_path(exercise),
             down_path: admin_exercise_down_path(exercise)
+        %td
+          .label{:class => "label-#{exercise.published_class}"}
+            = exercise.published_status
         %td.lead
           = link_to exercise.title, admin_section_exercise_path(@section, exercise)
         %td.text-right
