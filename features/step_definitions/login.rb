@@ -8,7 +8,7 @@ end
 
 Given(/^I click the menu item "(.*?)"$/) do |link|
   within(:css, '.navbar') do
-    click_link 'Log in'
+    click_link link
   end
 end
 
