@@ -11,6 +11,7 @@
       = render 'alternative_fields', :f => alternative
     .links
       = link_to_add_association 'Add alternative', f, :alternatives,
+        id: 'add-alternative',
         class: 'btn btn-success btn-sm'
 
   %hr
