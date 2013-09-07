@@ -21,6 +21,10 @@ class ProgressCalculator
     (progress.to_f / total * 100).to_i
   end
 
+  def self.calculate_progress_from_progress_collection_for_user(progress_collection, user)
+    calculateProgress(progress_collection)
+  end
+
   def self.calculate_progress_from_questions_for_user(questions, user)
     total = questions.length > 0 ? questions.length : 1
     correct = questions.select{ |q| q.is_correctly_answered_by_user?(user) }.length

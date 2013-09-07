@@ -16,6 +16,6 @@ class SectionDecorator < BaseDecorator
   end
 
   def progress
-    ProgressCalculator.calculateProgress(exercises)
+    ProgressCalculator.calculate_progress_from_progress_collection_for_user(exercises, current_user)
   end
 end
