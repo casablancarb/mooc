@@ -13,3 +13,5 @@ Feature: Answering questions
     Then the answer should be incorrect
     When I choose the correct answer
     Then the answer should be correct
+    When I reload the page
+    Then the answer should be correct

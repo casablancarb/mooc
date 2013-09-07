@@ -9,6 +9,15 @@ class Exercise < ActiveRecord::Base
     Exercise.available_to_user(user).include? self
   end
 
+  def number_of_questions
+    questions.length
+  end
+
+  def number_of_correctly_answered_questions_by_user(user)
+    return 1
+    questions.select{ |q| q.is_correctly_answered_by_user?(user) }.length
+  end
+
   def self.available_to_user(user)
     published.joins(:section).
       merge(Section.joins(:course)).

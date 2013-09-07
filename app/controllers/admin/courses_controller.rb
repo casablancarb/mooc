@@ -5,6 +5,7 @@ class Admin::CoursesController < Admin::AdminController
 
   def show
     @course = Course.find(params[:id]).decorate
+    @user = current_user
     redirect_unless_write_access_to_course! @course
     build_breadcrumb
   end

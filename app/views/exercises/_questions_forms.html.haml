@@ -11,7 +11,7 @@
       .form-group.radio
         = f.radio_button :alternative_id,
           alternative.id,
-          checked: current_user.thinks_alternative_is_correct?(alternative)
+          checked: alternative.is_selected_by_user?
         = f.label :"alternative_id_#{alternative.id}", alternative.body
 
   .explanation{ :"data-question"=>"#{question.id}", :class => "text-#{question.answer_status_class_for_user(current_user)}" }

@@ -8,10 +8,15 @@ class Question < ActiveRecord::Base
   acts_as_list scope: :exercise
 
   def answer_from_user(user)
-    Answer.joins(:alternative).
+    Answer.where(:user_id => user.id).
+      joins(:alternative).
       merge(Alternative.joins(:question)).
       merge(Question.where(:id => id)).
       order(:id).last or NoAnswer.new
+  end
+
+  def correct_alternatives
+    alternatives.select{ |q| q.truth_value }
   end
 
   def is_readable_by?(user)
@@ -19,7 +24,7 @@ class Question < ActiveRecord::Base
   end
 
   def is_correctly_answered_by_user?(user)
-    alternative_selected_by_user(user).truth_value == true
+    answer_from_user(user).is_correct?
   end
 
   def alternative_selected_by_user(user)

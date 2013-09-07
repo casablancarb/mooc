@@ -4,6 +4,7 @@ class AnswersController < ApplicationController
     if current_user.can_read?(@question)
       if params.has_key?(:answer)
         answer = Answer.new app_params
+        answer.user = current_user
         if answer.save
           render json: answer.alternative.to_json
         else

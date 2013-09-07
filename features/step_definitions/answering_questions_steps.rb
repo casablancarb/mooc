@@ -21,7 +21,7 @@ Given(/^that I am on the exercise page for that question$/) do
 end
 
 When(/^I choose the incorrect answer$/) do
-  choose "answer_alternative_id_#{@question.alternatives[0].id}"
+  choose "answer_alternative_id_#{@question.alternatives[1].id}"
 end
 
 Then(/^the answer should be incorrect$/) do
@@ -32,7 +32,7 @@ Then(/^the answer should be incorrect$/) do
 end
 
 When(/^I choose the correct answer$/) do
-  choose "answer_alternative_id_#{@question.alternatives[1].id}"
+  choose "answer_alternative_id_#{@question.alternatives[0].id}"
 end
 
 Then(/^the answer should be correct$/) do
@@ -40,4 +40,8 @@ Then(/^the answer should be correct$/) do
     page.should have_css('div.explanation.text-success')
     page.should_not have_css('div.explanation.text-danger')
   end
+end
+
+When(/^I reload the page$/) do
+  visit current_path
 end

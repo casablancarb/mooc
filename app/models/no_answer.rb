@@ -2,6 +2,10 @@ class NoAnswer
   def alternative
     NoAlternative.new
   end
+
+  def is_correct?
+    false
+  end
 end
 
 class NoAlternative

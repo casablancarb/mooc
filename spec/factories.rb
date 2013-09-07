@@ -34,6 +34,14 @@ FactoryGirl.define do
     video_id 'SOME_VIDEO_ID'
     published true
     section
+
+    factory :exercise_with_questions do
+      after :create do |exercise|
+        3.times do
+          exercise.questions << FactoryGirl.create(:question)
+        end
+      end
+    end
   end
 
   factory :question do
@@ -46,16 +54,21 @@ FactoryGirl.define do
     end
   end
 
+  factory :answer do
+    alternative
+    user
+  end
+
   factory :alternative do
     question
 
-    factory :correct_alternative do
+    factory :incorrect_alternative do
       body 'red'
       explanation 'It is simply illogical for A to be B if B is not A'
       truth_value false
     end
 
-    factory :incorrect_alternative do
+    factory :correct_alternative do
       body 'blue'
       explanation 'The reason red is red is that it\'s red'
       truth_value true

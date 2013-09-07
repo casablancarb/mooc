@@ -21,6 +21,7 @@ describe AnswersController do
       user.admissions << FactoryGirl.create(:admission, {course:course, user:user})
       expect{ post :create, id:question.id, answer: payload
       }.to change{ Answer.count }.by(1)
+      Answer.last.user.should == user
     end
 
     it "does not create an answer if the user is not admitted to the course" do

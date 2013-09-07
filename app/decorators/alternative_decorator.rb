@@ -14,4 +14,8 @@ class AlternativeDecorator < BaseDecorator
       'danger'
     end
   end
+
+  def is_selected_by_user?
+    model.is_selected_by_user?(h.current_user)  
+  end
 end
