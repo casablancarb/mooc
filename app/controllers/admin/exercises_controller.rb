@@ -33,7 +33,6 @@ class Admin::ExercisesController < Admin::AdminController
 
   def edit
     @exercise = Exercise.find params[:id]
-    abort current_user.inspect
     unless ExercisePolicy.user_can_edit?(current_user, @exercise)
       flash[:error] = 'Unauthorized'
       redirect_to :root
