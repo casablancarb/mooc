@@ -22,6 +22,28 @@ Given(/^I am on the course page$/) do
   visit "/courses/#{@exercise.section.course.id}"
 end
 
+Given(/^I am on the section page$/) do
+  visit "/sections/#{@exercise.section.id}"
+end
+
 Then(/^my progress for that exercise should be "(.*?)"$/) do |percentage|
-  page.should have_content(percentage)
+  page.should have_text(percentage)
+end
+
+Then(/^my progress for that course should be "(.*?)"$/) do |percentage|
+  page.should have_text(percentage)
+end
+
+Given(/^that there exist another exercise with (\d+) questions$/) do |num_questions|
+  section = @section || @exercise.section
+  exercise = FactoryGirl.create :exercise, { section: section }
+  num_questions.to_i.times{ FactoryGirl.create :question, { exercise: exercise} }
+end
+
+Given(/^that there exist another section$/) do
+  @section = FactoryGirl.create :section, { course: @exercise.section.course }
+end
+
+When(/^I am on the studies page$/) do
+  visit "/studies"
 end
