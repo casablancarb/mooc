@@ -26,11 +26,4 @@ class ProgressCalculator
     correct = questions.select{ |q| q.is_correctly_answered_by_user?(user) }.length
     (correct.to_f / total * 100).to_i
   end
-
-  def self.for_user_in_exercise(user, exercise)
-    questions = exercise.number_of_questions
-    total  = questions > 0 ? questions : 1
-    correct = exercise.number_of_correctly_answered_questions_by_user(user)
-    (correct.to_f / total * 100).to_i
-  end
 end
