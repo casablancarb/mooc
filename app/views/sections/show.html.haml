@@ -20,7 +20,9 @@
 
               .list-group-item-text
                 %p
-                  #{exercise.progress}% finished
+                  %span.progress-value
+                    #{exercise.progress}
+                  finished
                   .progress.progress-striped
                     .progress-bar{ class: "progress-bar-#{exercise.progress_class}",
                       style: "width: #{exercise.progress}%" }
