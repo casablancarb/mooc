@@ -11,18 +11,14 @@ class ProgressCalculator
     end
   end
 
-  def self.calculateProgress(progress_collection)
+  def self.calculate_progress_from_progress_collection_for_user(progress_collection, user)
     return 0 if progress_collection.length < 1
     progress = 0
     total = progress_collection.length * 100
     progress_collection.each do |s|
-      progress += s.progress
+      progress += s.progress_for_user(user)
     end
     (progress.to_f / total * 100).to_i
-  end
-
-  def self.calculate_progress_from_progress_collection_for_user(progress_collection, user)
-    calculateProgress(progress_collection)
   end
 
   def self.calculate_progress_from_questions_for_user(questions, user)

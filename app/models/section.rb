@@ -7,4 +7,8 @@ class Section < ActiveRecord::Base
   def published_exercises
     exercises.where(:published => true)
   end
+
+  def progress_for_user(user)
+    ProgressCalculator.calculate_progress_from_progress_collection_for_user(exercises, user)
+  end
 end
