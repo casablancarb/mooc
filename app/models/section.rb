@@ -9,6 +9,6 @@ class Section < ActiveRecord::Base
   end
 
   def progress_for_user(user)
-    ProgressCalculator.calculate_progress_from_progress_collection_for_user(exercises, user)
+    ProgressCalculator.calculate_progress_from_progress_collection_for_user(published_exercises, user)
   end
 end
