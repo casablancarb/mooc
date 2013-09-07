@@ -40,7 +40,7 @@ class ExerciseDecorator < BaseDecorator
   end
 
   def progress
-    ProgressCalculator.calculate_progress_from_questions_for_user(questions, h.current_user)
+    model.progress_for_user(h.current_user)
   end
 
   def published_status

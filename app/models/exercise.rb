@@ -18,6 +18,10 @@ class Exercise < ActiveRecord::Base
     questions.select{ |q| q.is_correctly_answered_by_user?(user) }.length
   end
 
+  def progress_for_user(user)
+    ProgressCalculator.calculate_progress_from_questions_for_user(questions, user)
+  end
+
   def self.available_to_user(user)
     published.joins(:section).
       merge(Section.joins(:course)).
