@@ -21,6 +21,10 @@ Given(/^I take a note of my progress$/) do
   @last_progress = page.find(:css, '.progress-value').text.chomp('%').to_i
 end
 
+Given(/^I am on the studies page$/) do
+  visit '/studies'
+end
+
 Given(/^I answer a question correctly$/) do
   question = @last_exercise.questions.first
   correct_alternative = question.correct_alternatives.first
