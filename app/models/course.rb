@@ -10,6 +10,10 @@ class Course < ActiveRecord::Base
     user.id == other_user.id
   end
 
+  def progress_for_user(user)
+    ProgressCalculator.calculate_progress_from_progress_collection_for_user(sections, user)
+  end
+
   default_scope do
     order('year ASC').order('semester ASC')
   end
