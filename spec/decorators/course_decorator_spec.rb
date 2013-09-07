@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe CourseDecorator do
   context "#progress" do
-    it "delegates to the progress calculator" do
-      decorator = CourseDecorator.new(nil)
+    it "delegates to the course model" do
+      decorator = Course.new.decorate
       decorator.stub(:current_user){ 'Jane' }
-      decorator.stub(:sections){ ['Sections'] }
-      ProgressCalculator.stub(:calculate_progress_from_progress_collection_for_user)
 
-      ProgressCalculator.should_receive(:calculate_progress_from_progress_collection_for_user).with(['Sections'], 'Jane')
+      ProgressCalculator.
+        should_receive(:calculate_progress_from_progress_collection_for_user).
+        with(decorator.sections, decorator.current_user)
 
       decorator.progress
     end
