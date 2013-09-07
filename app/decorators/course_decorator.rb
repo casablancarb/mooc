@@ -24,6 +24,6 @@ class CourseDecorator < BaseDecorator
   end
 
   def progress
-    ProgressCalculator.calculateProgress(sections)
+    ProgressCalculator.calculate_progress_from_progress_collection_for_user(sections, current_user)
   end
 end
