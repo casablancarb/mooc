@@ -18,51 +18,51 @@
         %button.close{type:"button", :"data-dismiss" => "alert"} &times;
         =message
 
-.navbar.navbar-fixed-top
-  .navbar-header
-    %a.navbar-brand{href:"/"}= "Snabbspola"
-  .navbar-collapse.collapse
-    %ul.nav.navbar-nav.pull-right
-      - if current_user
-        %li.pull-right
-          %a{href:"/logout"}
-            %i.icon-off
-        %li.pull-right
-          = link_to current_user.firstname, profile_path,
-            class: 'btn'
-      - else
-        %a.navbar-text.pull-right{href: "/register"} Register
-        %a.navbar-text.pull-right{href: "/login"} Log in
-
-    %ul.nav.navbar-nav
-      - if current_user
-        %li
-          %a{href: "#{studies_path}"}
-            %i.icon-home
-            My studies
-
-        - if current_user.is_teacher?
-          %li
-            %a{href: "#{teaching_path}"}
-              %i.icon-microphone
-              My teaching
-
-        %li
-          %a{href: "/courses"}
-            %i.icon-archive
-            Course Catalog
-
-- if @breadcrumbs
-  .container
-    %ol.breadcrumb
-      - @breadcrumbs.each do |breadcrumb|
-        - unless breadcrumb.url.blank?
-          %li
-            %a{ href:"#{breadcrumb.url}" }
-              = breadcrumb.title
+  .navbar.navbar-fixed-top
+    .navbar-header
+      %a.navbar-brand{href:"/"}= "Snabbspola"
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav.pull-right
+        - if current_user
+          %li.pull-right
+            %a{href:"/logout"}
+              %i.icon-off
+          %li.pull-right
+            = link_to current_user.firstname, profile_path,
+              class: 'btn'
         - else
-          %li.active
-            = breadcrumb.title
+          %a.navbar-text.pull-right{href: "/register"} Register
+          %a.navbar-text.pull-right{href: "/login"} Log in
 
-=yield
+      %ul.nav.navbar-nav
+        - if current_user
+          %li
+            %a{href: "#{studies_path}"}
+              %i.icon-home
+              My studies
+
+          - if current_user.is_teacher?
+            %li
+              %a{href: "#{teaching_path}"}
+                %i.icon-microphone
+                My teaching
+
+          %li
+            %a{href: "/courses"}
+              %i.icon-archive
+              Course Catalog
+
+  - if @breadcrumbs
+    .container
+      %ol.breadcrumb
+        - @breadcrumbs.each do |breadcrumb|
+          - unless breadcrumb.url.blank?
+            %li
+              %a{ href:"#{breadcrumb.url}" }
+                = breadcrumb.title
+          - else
+            %li.active
+              = breadcrumb.title
+
+  =yield
 
