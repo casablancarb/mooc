@@ -14,7 +14,7 @@ class FeedbackController < ApplicationController
       @feedback = Feedback.new app_params
       @feedback.exercise_id = @exercise.id
       if @feedback.save
-        flash[:success] = 'Feedback sent, thank you :)'
+        flash[:success] = 'Thank you for your feedback! :)'
         redirect_to @exercise
       else
         flash[:error] = 'Could not send feedback'

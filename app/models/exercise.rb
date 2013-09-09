@@ -22,6 +22,10 @@ class Exercise < ActiveRecord::Base
     ProgressCalculator.calculate_progress_from_questions_for_user(questions, user)
   end
 
+  def self.published
+    where(:published => true)
+  end
+
   def self.available_to_user(user)
     published.joins(:section).
       merge(Section.joins(:course)).
