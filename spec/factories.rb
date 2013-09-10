@@ -7,6 +7,10 @@ FactoryGirl.define do
     email 'jane@example.com'
     password '123123'
     password_confirmation '123123'
+
+    factory :teacher do
+      is_teacher true
+    end
   end
 
   factory :admission do
