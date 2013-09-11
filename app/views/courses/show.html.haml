@@ -28,3 +28,17 @@
     %p
       This course currently has no sections. Please check back soon :)
 
+  - if @course.announcements.length > 0
+
+    .page-header
+      %h2 Announcements
+
+    - @course.announcements.each do |announcement|
+      .panel.panel-default
+        .panel-heading
+          %h4= announcement.title
+        .panel-body
+          = announcement.body
+          %p.pull-right
+            %small
+              = announcement.created_at

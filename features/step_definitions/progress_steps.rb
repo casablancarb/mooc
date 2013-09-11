@@ -14,7 +14,12 @@ Given(/^I am on the section page$/) do
 end
 
 Given(/^I am on the course page$/) do
-  visit "/courses/#{@last_exercise.section.course.id}"
+  if @last_exercise
+    @last_course = @last_exercise.section.course
+  elsif @last_announcement
+    @last_course = @last_announcement.course
+  end
+  visit "/courses/#{ @last_course.id }"
 end
 
 Given(/^I take a note of my progress$/) do
