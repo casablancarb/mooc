@@ -19,6 +19,7 @@ describe AnswersController do
 
     it "creates an answer if the user is admitted to the course" do
       user.admissions << FactoryGirl.create(:admission, {course:course, user:user})
+      post :create, id:question.id, answer:FactoryGirl.attributes_for(:announcement)
       expect{ post :create, id:question.id, answer: payload
       }.to change{ Answer.count }.by(1)
       Answer.last.user.should == user
