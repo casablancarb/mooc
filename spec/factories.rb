@@ -78,4 +78,16 @@ FactoryGirl.define do
       truth_value true
     end
   end
+
+  factory :announcement do
+    course
+    title 'Public service announcement'
+    body 'Will the real Slim Shady please stand up!'
+
+    factory :invalid_announcement do
+      course nil
+      title nil
+      body nil
+    end
+  end
 end

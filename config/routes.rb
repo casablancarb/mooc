@@ -27,6 +27,7 @@ SnabbspolaSe::Application.routes.draw do
   namespace :admin do
     resources :courses do
       resources :sections, except: [:index]
+      resources :announcements, only: [:new, :create]
     end
     post 'sections/:id/up' => 'sections#up', as: 'section_up'
     post 'sections/:id/down' => 'sections#down', as: 'section_down'

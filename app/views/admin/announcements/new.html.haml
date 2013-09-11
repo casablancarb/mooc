@@ -1,0 +1,24 @@
+.container
+  .page-header
+    %h1
+      New announcement
+      %br
+      %small
+        = @course.title
+
+  = form_for ['admin', @course, @announcement] do |f|
+    = render 'shared/form_errors', model: @announcement
+    .form-group
+      = f.label :title
+      = f.text_field :title,
+        class: 'form-control'
+    .form-group
+      = f.label :body
+      = f.text_area :body,
+        class: 'form-control'
+    .form-group
+      = f.submit 'Post',
+        class: 'form-control btn btn-primary'
+
+
+
