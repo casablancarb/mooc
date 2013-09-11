@@ -22,7 +22,7 @@ FactoryGirl.define do
     title 'Philosophy and Programming'
     year 2013
     semester 1
-    user
+    user{ FactoryGirl.create :teacher }
     admission_code{ (Course.count + 12).to_s }
   end
 

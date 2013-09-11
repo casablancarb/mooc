@@ -1,4 +1,4 @@
-class Admin::AnnouncementsController < ApplicationController
+class Admin::AnnouncementsController < Admin::AdminController
   def new
     @announcement = Announcement.new
     @course = Course.find params[:course_id]
