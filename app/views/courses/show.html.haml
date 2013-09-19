@@ -10,20 +10,33 @@
   - if @course.sections.length > 0
     .list-group
       - @course.sections.each do |section|
-        = link_to section,
-          class: 'list-group-item' do
+        - if section.has_questions?
+          = link_to section,
+            class: 'list-group-item' do
 
-          %h4.list-group-item-heading
-            = section.title
+            %h4.list-group-item-heading
+              = section.title
 
-          .list-group-item-text
-            %p
-              %span.progress-value
-                #{section.progress}%
-              finished
-              .progress.progress-striped
-                .progress-bar{ class: "progress-bar-#{section.progress_class}",
-                  style: "width: #{section.progress}%" }
+            .list-group-item-text
+              %p
+                - if section.has_questions?
+                  %span.progress-value
+                    #{section.progress}%
+                  finished
+                .progress.progress-striped
+                  .progress-bar{ class: "progress-bar-#{section.progress_class}",
+                    style: "width: #{section.progress}%" }
+        - else
+          .list-group-item.text-muted
+            %h4.list-group-item-heading
+              %i.icon-lock
+              = section.title
+            .list-group-item-text
+              %p
+                %span.progress-value
+                  No exercises yet
+            .progress.progress-striped
+              .progress-bar
   - else
     %p
       This course currently has no sections. Please check back soon :)

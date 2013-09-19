@@ -18,4 +18,11 @@ class SectionDecorator < BaseDecorator
   def progress
     model.progress_for_user(current_user)
   end
+
+  def has_questions?
+    exercises.each do |e|
+      return true if e.questions.length > 0
+    end
+    false
+  end
 end
