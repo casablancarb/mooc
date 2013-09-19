@@ -48,11 +48,11 @@
                 .media-body
                   %p
                     = comment.body
-                  %p
+                  %p.text-muted
                     %small
                       Posted by
-                      %b
-                        = comment.author
+                      = comment.author
+                      #{comment.time_ago_in_words} ago
 
       = render 'comments/form'
 

@@ -11,4 +11,8 @@ class CommentDecorator < BaseDecorator
     hash = Digest::MD5.hexdigest(user.email)
     "http://www.gravatar.com/avatar/#{hash}?d=identicon"
   end
+
+  def time_ago_in_words
+    h.time_ago_in_words(created_at)
+  end
 end
