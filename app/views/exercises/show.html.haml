@@ -41,13 +41,18 @@
         .list-group
         - @exercise.comments.each do |comment|
           .well.comment{ :data => {:user_role => comment.user_role } }
-            %p
-              = comment.body
-            %p
-              %small
-                Posted by
-                %b
-                  = comment.author
+            %ul.media-list
+              %li.media
+                .pull-left
+                  %img{src:comment.gravatar}
+                .media-body
+                  %p
+                    = comment.body
+                  %p
+                    %small
+                      Posted by
+                      %b
+                        = comment.author
 
       = render 'comments/form'
 

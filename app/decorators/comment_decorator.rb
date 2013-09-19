@@ -6,4 +6,9 @@ class CommentDecorator < BaseDecorator
   def author
     user.firstname
   end
+
+  def gravatar
+    hash = Digest::MD5.hexdigest(user.email)
+    "http://www.gravatar.com/avatar/#{hash}?d=identicon"
+  end
 end
