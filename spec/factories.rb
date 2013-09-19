@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :user do
     firstname 'Jane'
     lastname 'Doe'
-    email 'jane@example.com'
+    email "jane@example.com"
     password '123123'
     password_confirmation '123123'
 
@@ -87,6 +87,18 @@ FactoryGirl.define do
     factory :invalid_announcement do
       course nil
       title nil
+      body nil
+    end
+  end
+
+  factory :comment do
+    user
+    exercise
+    body 'Kittens love this exercise!'
+
+    factory :invalid_comment do
+      user nil
+      exercise nil
       body nil
     end
   end

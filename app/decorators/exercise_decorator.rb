@@ -50,4 +50,8 @@ class ExerciseDecorator < BaseDecorator
   def published_class
     published ? 'success' : 'warning'
   end
+
+  def comments
+    CommentDecorator.decorate_collection model.comments
+  end
 end

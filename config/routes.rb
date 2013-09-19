@@ -13,6 +13,7 @@ SnabbspolaSe::Application.routes.draw do
 
   resources :sections, :only => [:show]
   resources :exercises, :only => [:show] do
+    post 'comments' => 'comments#create'
     resources :feedback, :only => [:new, :create]
   end
 

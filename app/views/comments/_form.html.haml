@@ -1,0 +1,11 @@
+= form_for [@exercise, @comment] do |f|
+  = render 'shared/form_errors', model: @comment
+
+  .form-group
+    = f.label :body, 'Comment'
+    = f.text_area :body,
+      placeholder: 'Enter your comment here',
+      class: 'form-control'
+  .form-group
+    = f.submit 'Post comment',
+      class: 'form-control btn btn-primary'
