@@ -17,8 +17,8 @@ class FeedbackController < ApplicationController
         flash[:success] = 'Thank you for your feedback! :)'
         redirect_to @exercise
       else
-        flash[:error] = 'Could not send feedback'
-        render 'new'
+        flash[:error] = 'Could not submit feedback'
+        redirect_to @exercise
       end
     else
       flash[:error] = 'Unauthorized'

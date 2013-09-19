@@ -9,10 +9,11 @@ Feature: Answering questions
     And that I am logged in
     And that I have access to the course
     And that I am on the exercise page for that question
-    And that I click the "Questions" tab
+    And I click the "Questions" tab
     When I choose the incorrect answer
     Then the answer should be incorrect
     When I choose the correct answer
     Then the answer should be correct
     When I reload the page
+    And I click the "Questions" tab
     Then the answer should be correct

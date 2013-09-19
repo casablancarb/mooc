@@ -7,7 +7,15 @@ Feature: Leaving Feedback
     Given I have access to an exercise
     And that I am logged in
     And I am on the exercise page
-    And I click "Leave feedback"
+    And I click the "Feedback" tab
     And I fill in the feedback form
     And I click the button "Submit feedback"
     Then I should see a successful flash saying "Thank you for your feedback!"
+
+  Scenario: Leaving feedback without writing anything
+    Given I have access to an exercise
+    And that I am logged in
+    And I am on the exercise page
+    And I click the "Feedback" tab
+    And I click the button "Submit feedback"
+    Then I should see an error flash saying "Could not submit feedback"

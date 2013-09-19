@@ -20,13 +20,14 @@
       %a{href:'#comments', :'data-toggle' => 'tab'}
         = @exercise.comments.length
         Comments
+    %li
+      %a{href:'#feedback', :'data-toggle' => 'tab'}
+        Feedback
 
   .tab-content
     .tab-pane#about.active
       %p.lead
         = @exercise.description
-      = link_to 'Leave feedback', new_exercise_feedback_path(@exercise),
-        class: 'btn btn-info'
 
     .tab-pane#questions
       - if @exercise.questions.length > 0
@@ -48,7 +49,11 @@
                 %b
                   = comment.author
 
-      .row
-        .col-md-6
-          = render 'comments/form'
+      = render 'comments/form'
 
+    .tab-pane#feedback
+      %p
+        By leaving constructive feedback, your teacher can adapt the course material to better suit your needs. So please do be honest! Your ideas make this course better!
+        %span.text-info
+          Your feedback will be totally anonymous.
+      = render 'feedback/form', exercise: @exercise
