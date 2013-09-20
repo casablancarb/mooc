@@ -37,7 +37,7 @@ describe Exercise do
   end
 
   context "#course" do
-    it "should return the course the exercise belong to" do
+    it "should return the course the exercise belongs to" do
       course = exercise.section.course
       exercise.course.should == course
     end
