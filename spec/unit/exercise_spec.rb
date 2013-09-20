@@ -35,4 +35,11 @@ describe Exercise do
       subject.is_published?.should be_false
     end
   end
+
+  context "#course" do
+    it "should return the course the exercise belong to" do
+      course = exercise.section.course
+      exercise.course.should == course
+    end
+  end
 end

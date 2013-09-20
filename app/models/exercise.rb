@@ -27,6 +27,10 @@ class Exercise < ActiveRecord::Base
     published
   end
 
+  def course
+    section.course
+  end
+
   def self.published
     where(:published => true)
   end
