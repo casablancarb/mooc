@@ -23,4 +23,16 @@ describe Exercise do
       exercise.progress_for_user(user)
     end
   end
+
+  context "#is_published?" do
+    it "should be true if the exercise is published" do
+      subject.stub(:published){ true }
+      subject.is_published?.should be_true
+    end
+
+    it "should be false if the exercise is not published" do
+      subject.stub(:published){ false }
+      subject.is_published?.should be_false
+    end
+  end
 end

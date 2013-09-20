@@ -23,6 +23,10 @@ class Exercise < ActiveRecord::Base
     ProgressCalculator.calculate_progress_from_questions_for_user(questions, user)
   end
 
+  def is_published?
+    published
+  end
+
   def self.published
     where(:published => true)
   end
