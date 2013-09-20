@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     alternative.is_selected_by_user? self
   end
 
+  def is_published?
+    published
+  end
+
   def is_teacher?
     is_teacher
   end
