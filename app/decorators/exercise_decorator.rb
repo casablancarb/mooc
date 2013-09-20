@@ -54,4 +54,8 @@ class ExerciseDecorator < BaseDecorator
   def comments
     CommentDecorator.decorate_collection model.comments
   end
+
+  def image
+    "http://img.youtube.com/vi/#{video_id}/0.jpg"
+  end
 end

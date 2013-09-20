@@ -11,10 +11,10 @@
           class: 'list-group-item' do
 
           .row
-            .col-md-1.text-center
-              %i.icon-play-sign.icon-lg{ class:"text-#{exercise.progress_class}" }
+            .col-md-2.text-center
+              %img{src:exercise.image}
 
-            .col-md-11
+            .col-md-10
               %h4.list-group-item-heading
                 = exercise.title
 
