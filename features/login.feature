@@ -4,7 +4,7 @@ Feature: Loggin in
   I want to be able to log in
 
   Scenario: Logging in with correct credentials
-    Given I have a user account
+    Given I have an account
     And I am on the home page
     And I click the menu item "Log in"
     And I enter my credentials
@@ -12,7 +12,7 @@ Feature: Loggin in
     Then I should see a successful flash saying "Successfully logged in"
 
   Scenario: Logging in with incorrect credentials
-    Given I have a user account
+    Given I have an account
     And I am on the home page
     And I click the menu item "Log in"
     And I enter incorrect credentials

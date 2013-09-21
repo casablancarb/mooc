@@ -1,27 +1,55 @@
-Given(/^a question with two answers$/) do
-  @question = FactoryGirl.create :question
+Given(/^I have an account$/) do
+  @last_user = FactoryGirl.create :user
+end
+
+Given(/^there exist a course$/) do
+  @last_course = FactoryGirl.create :course
+end
+
+Given(/^the course has (\d+) section$/) do |n|
+  n.to_i.times do
+    @last_section = FactoryGirl.create :section
+    @last_course.sections << @last_section
+  end
+end
+
+Given(/^the section has (\d+) exercise$/) do |n|
+  n.to_i.times do
+    @last_exercise = FactoryGirl.create :exercise
+    @last_section.exercises << @last_exercise
+  end
+end
+
+Given(/^the exercise has questions$/) do
+  @last_question = FactoryGirl.create :question,
+    exercise: @last_exercise
+end
+
+Given(/^I am admitted to the course$/) do
+  FactoryGirl.create :admission,
+    user: @last_user,
+    course: @last_course
 end
 
 Given(/^that I am logged in$/) do
   visit '/login'
-  fill_in 'email', with: 'jane@example.com'
-  fill_in 'password', with: '123123'
+  fill_in 'email', with: @last_user.email
+  fill_in 'password', with: 'password'
   click_button 'Log in'
   page.find(:css, '.alert').text.should include('Successfully logged in')
 end
 
-Given(/^that I have access to the course$/) do
-  user = User.find_by_email('jane@example.com')
-  course = @question.exercise.section.course
-  Admission.create(user: user, course: course)
+Given(/^a question with two answers$/) do
+  @question = FactoryGirl.create :question
 end
 
-Given(/^that I am on the exercise page for that question$/) do
-  visit "/exercises/#{@question.exercise.id}"
+Given(/^that I have access to the course$/) do
+  course = @question.exercise.section.course
+  Admission.create(user: @last_user, course: course)
 end
 
 When(/^I choose the incorrect answer$/) do
-  choose "answer_alternative_id_#{@question.alternatives[1].id}"
+  choose "answer_alternative_id_#{@last_question.alternatives[1].id}"
 end
 
 Then(/^the answer should be incorrect$/) do
@@ -32,7 +60,7 @@ Then(/^the answer should be incorrect$/) do
 end
 
 When(/^I choose the correct answer$/) do
-  choose "answer_alternative_id_#{@question.alternatives[0].id}"
+  choose "answer_alternative_id_#{@last_question.alternatives[0].id}"
 end
 
 Then(/^the answer should be correct$/) do

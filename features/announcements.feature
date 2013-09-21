@@ -4,8 +4,10 @@ Feature: Announcements
   I want to be able to see announcements
 
   Scenario: Reading an announcement
-    Given there is an announcement
-    And I have access to the announcement
+    Given I have an account
     And that I am logged in
-    And I am on the course page
+    And there exist a course
+    And the course has an announcement
+    And I am admitted to the course
+    When I am on the course page
     Then I should see the announcement

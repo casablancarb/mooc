@@ -1,6 +1,6 @@
 Given(/^I enter a valid admission code$/) do
-  @course ||= FactoryGirl.create :course
-  fill_in 'Admission code', with: @course.admission_code
+  @last_course ||= FactoryGirl.create :course
+  fill_in 'Admission code', with: @last_course.admission_code
 end
 
 Given(/^I enter my personal information$/) do
@@ -12,6 +12,6 @@ Given(/^I enter my personal information$/) do
 end
 
 Given(/^I enter an invalid admission code$/) do
-  course = FactoryGirl.create :course
+  FactoryGirl.create :course
   fill_in 'Admission code', with: 'invalid-admission-code'
 end

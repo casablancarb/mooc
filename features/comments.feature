@@ -5,9 +5,12 @@ Feature: Comments
 
   Scenario: As a student
     Given I am a student
-    And I have access to an exercise
     And that I am logged in
-    And I am on the exercise page
+    And there exist a course
+    And I am admitted to the course
+    And the course has 1 section
+    And the section has 1 exercise
+    When I am on the exercise page
     And I click the "Comments" tab
     And I fill in the comment form
     And I click the button "Post comment"

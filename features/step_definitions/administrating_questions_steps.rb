@@ -1,23 +1,10 @@
-Given(/^I am logged in as a teacher$/) do
-  @exercise = FactoryGirl.create :exercise
-  @user = @exercise.section.course.user
-  #@user = FactoryGirl.create :user
-  @user.is_teacher = true
-  @user.save!
-
-  visit '/login'
-  fill_in 'email', with: 'jane@example.com'
-  fill_in 'password', with: '123123'
-  click_button 'Log in'
-  page.find(:css, '.alert').text.should include('Successfully logged in')
+Given(/^I am the teacher of the course$/) do
+  @last_course.user = @last_user
+  @last_course.save!
 end
 
-Given(/^I am on the page for one of my exercises$/) do
- # @exercise = FactoryGirl.create :exercise
- #  @exercise.section.course.user = @user
- #  @exercise.section.course.user_id = @user
- #  @exercise.save!
-  visit "/admin/sections/#{@exercise.section.id}/exercises/#{@exercise.id}"
+Given(/^I am on the admin exercise page$/) do
+  visit "/admin/sections/#{@last_exercise.section.id}/exercises/#{@last_exercise.id}"
 end
 
 Given(/^I click "(.*?)"$/) do |text|

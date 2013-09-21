@@ -4,9 +4,11 @@ FactoryGirl.define do
   factory :user do
     firstname 'Jane'
     lastname 'Doe'
-    email "jane@example.com"
-    password '123123'
-    password_confirmation '123123'
+    sequence :email do |n|
+      "jane#{n}@example.com"
+    end
+    password 'password'
+    password_confirmation 'password'
 
     factory :teacher do
       is_teacher true

@@ -1,7 +1,3 @@
-Given(/^I have a user account$/) do
-  @user = FactoryGirl.create :user
-end
-
 Given(/^I am on the home page$/) do
   visit '/'
 end
@@ -13,8 +9,8 @@ Given(/^I click the menu item "(.*?)"$/) do |link|
 end
 
 Given(/^I enter my credentials$/) do
-  fill_in 'email', with: 'jane@example.com'
-  fill_in 'password', with: '123123'
+  fill_in 'email', with: @last_user.email
+  fill_in 'password', with: 'password'
 end
 
 Given(/^I click the button "(.*?)"$/) do |name|

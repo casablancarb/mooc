@@ -4,8 +4,9 @@ Feature: Joining a course
   I want to be able to join a course
 
   Scenario: Joining a course with a valid admission code
-    Given there is a course
+    Given I have an account
     And that I am logged in
+    And there exist a course
     And I am on the home page
     And I click the menu item "Course Catalog"
     And I click "Join course"
@@ -15,7 +16,8 @@ Feature: Joining a course
     And the page heading should be the name of the course
 
   Scenario: Listing courses I'm admitted to
-    Given that I am admitted to a course
+    Given I have an account
     And that I am logged in
+    And I am admitted to a course
     And I am on the home page
     Then I should see the course title in the list of my courses
