@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe User do
+  context "#valid?" do
+    it "is false if email is not unique" do
+      first  = FactoryGirl.create :user
+      second = FactoryGirl.build :user, email: first.email
+      second.should_not be_valid
+    end
+  end
+
   context "is_teacher?" do
     it "returns true if the user is a teacher" do
       subject.stub(:is_teacher){ true }
