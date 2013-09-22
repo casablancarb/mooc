@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916164329) do
+ActiveRecord::Schema.define(version: 20130922111126) do
 
   create_table "admissions", force: true do |t|
     t.integer  "user_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20130916164329) do
 
   create_table "alternatives", force: true do |t|
     t.string   "body"
-    t.string   "explanation"
+    t.text     "explanation", limit: 255
     t.boolean  "truth_value"
     t.integer  "question_id"
     t.datetime "created_at"
