@@ -58,4 +58,8 @@ class ExerciseDecorator < BaseDecorator
   def image
     "http://img.youtube.com/vi/#{video_id}/0.jpg"
   end
+
+  def video_embed_url
+    "//www.youtube.com/embed/#{video_id}?vq=hd1080"
+  end
 end
