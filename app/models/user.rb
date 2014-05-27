@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
+  
   has_many :courses
   has_many :admissions
+
+  #validation
   validates_presence_of :email, :firstname, :lastname
   validates_presence_of :password, on: :create
   validates_uniqueness_of :email
