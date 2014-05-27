@@ -20,8 +20,5 @@ Capfile
 config/deploy.rb
 config/deploy/*
 
-# Ignore database config
-config/database.yml
-
 # Ignore todo file
 todo.markdown
