@@ -12,3 +12,12 @@ A simple, work-in-progress MOOC platform.
 Then create your user
 
 	User.create(email: "name@example.com", password: "foobar", password_confirmation: "foobar", firstname: "admin", lastname: "user", is_teacher: true)
+	
+	
+# Roadmap 
+Visit the public Trello board to know more about features and the roadmap for this project : 
+[https://trello.com/b/653rlfZw](https://trello.com/b/653rlfZw)
+
+If you're interested in contributing with features please drop me an email : zakaria.braksa [at] gmail [dot] com 
+
+ 
