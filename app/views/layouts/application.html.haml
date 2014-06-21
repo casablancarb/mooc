@@ -1,7 +1,7 @@
 !!! html5
 %html
   %head
-    %title snabbspola
+    %title MOOCx
     =yield :head
     =stylesheet_link_tag "application", media: "all", "data-turbu-links-track" => true
     =javascript_include_tag "application", media: "all", "data-turbo-links-track" => true
@@ -20,7 +20,7 @@
 
     .navbar.navbar-fixed-top.navbar-default
       .navbar-header
-        %a.navbar-brand{href:"/"}= "Snabbspola"
+        %a.navbar-brand{href:"/"}= "MOOCx"
       .navbar-collapse.collapse
         %ul.nav.navbar-nav.pull-right
           - if current_user
