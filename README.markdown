@@ -1,4 +1,10 @@
+#MOOCx
+ 
 A simple, work-in-progress MOOC platform.
+
+ 
+![alt tag](https://raw.githubusercontent.com/casablancarb/mooc/master/public/screenshot.jpg)
+
 
 # How to install 
 
@@ -20,4 +26,4 @@ Visit the public Trello board to know more about features and the roadmap for th
 
 If you're interested in contributing with features please drop me an email : zakaria.braksa [at] gmail [dot] com 
 
- 
+
